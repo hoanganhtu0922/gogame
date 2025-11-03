@@ -1,0 +1,11 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Users/HOANG ANH/minifolder/cs160/Project/build/cmake_install.cmake",
+		"C:/Users/HOANG ANH/minifolder/cs160/Project/build/raylib/cmake_install.cmake",
+		"C:/Users/HOANG ANH/minifolder/cs160/Project/build/raylib/raylib/cmake_install.cmake",
+		"C:/Users/HOANG ANH/minifolder/cs160/Project/build/raylib/raylib/external/glfw/cmake_install.cmake",
+		"C:/Users/HOANG ANH/minifolder/cs160/Project/build/raylib/raylib/external/glfw/src/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

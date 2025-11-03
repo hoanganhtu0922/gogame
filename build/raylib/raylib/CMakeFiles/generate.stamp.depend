@@ -1,0 +1,20 @@
+# CMake generation dependency list for this directory.
+C:/Program Files/CMake/share/cmake-4.1/Modules/CPack.cmake
+C:/Program Files/CMake/share/cmake-4.1/Modules/CPackComponent.cmake
+C:/Program Files/CMake/share/cmake-4.1/Modules/FindOpenGL.cmake
+C:/Program Files/CMake/share/cmake-4.1/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-4.1/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-4.1/Modules/GNUInstallDirs.cmake
+C:/Program Files/CMake/share/cmake-4.1/Templates/CPackConfig.cmake.in
+C:/Users/HOANG ANH/minifolder/cs160/Project/raylib/cmake/CompileDefinitions.cmake
+C:/Users/HOANG ANH/minifolder/cs160/Project/raylib/cmake/GlfwImport.cmake
+C:/Users/HOANG ANH/minifolder/cs160/Project/raylib/cmake/InstallConfigurations.cmake
+C:/Users/HOANG ANH/minifolder/cs160/Project/raylib/cmake/JoinPaths.cmake
+C:/Users/HOANG ANH/minifolder/cs160/Project/raylib/cmake/LibraryConfigurations.cmake
+C:/Users/HOANG ANH/minifolder/cs160/Project/raylib/cmake/LibraryPathToLinkerFlags.cmake
+C:/Users/HOANG ANH/minifolder/cs160/Project/raylib/cmake/PackConfigurations.cmake
+C:/Users/HOANG ANH/minifolder/cs160/Project/raylib/cmake/PopulateConfigVariablesLocally.cmake
+C:/Users/HOANG ANH/minifolder/cs160/Project/raylib/cmake/raylib-config-version.cmake
+C:/Users/HOANG ANH/minifolder/cs160/Project/raylib/cmake/raylib-config.cmake
+C:/Users/HOANG ANH/minifolder/cs160/Project/raylib/raylib.pc.in
+C:/Users/HOANG ANH/minifolder/cs160/Project/raylib/src/CMakeLists.txt
