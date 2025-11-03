@@ -1,6 +1,10 @@
+#pragma once
 #include "Board.h"
-#include "IMG.h"
-#include "SaveGame.cpp"
+#include <algorithm>
+#include "SaveGame.h"
+#include "SaveGame.h"
+#include <algorithm>
+
 std::array<std::vector<point>, 100000> stage;
 bool StageTurn[100000];
 

@@ -1,6 +1,5 @@
 #pragma once
-#include <fstream>
-#include "Board.h"
+#include "LoadGame.h"
 
 Board LoadGame(std::string filename) {
     std::ifstream in(filename);
@@ -21,4 +20,3 @@ Board LoadGame(std::string filename) {
     in.close();
     return board;
 }
-

@@ -11,7 +11,7 @@ static bool IsMouseOverRect(Rectangle r, Vector2 m) {
     return m.x >= r.x && m.x <= r.x + r.width && m.y >= r.y && m.y <= r.y + r.height;
 }
 
-static void DrawButton(Rectangle r, char* label, bool hover) {
+static void DrawButton(Rectangle r,const char* label, bool hover) {
     Color bg = hover ? Color{50, 120, 200, 255} : Color{30, 30, 30, 255};
     Color border = {220, 220, 220, 255};
     DrawRectangleRounded(r, 0.2f, 8, bg);

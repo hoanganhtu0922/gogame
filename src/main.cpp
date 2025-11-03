@@ -4,7 +4,7 @@
 #include "soundEffect.h"
 #include "initial.h"
 #include "Menu.h"
-#include "LoadGame.cpp"
+#include "LoadGame.h"
 #include <iostream>
 #include <vector>
 #include <queue>

@@ -1,4 +1,4 @@
-#include <fstream>
+#include "SaveGame.h"
 #include "Board.h"
 
 void SaveGame(const Board& board, std::string filename) {
