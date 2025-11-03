@@ -1,0 +1,52 @@
+//Library 
+#include "IMG.h"
+
+IMG::IMG() {
+    Image img = LoadImage("C:/Users/HOANG ANH/minifolder/cs160/Project/image/black.png");
+    ImageFormat(&img, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);
+    remove_background(img);
+    Black = LoadTextureFromImage(img);
+    UnloadImage(img);
+
+    img = LoadImage("C:/Users/HOANG ANH/minifolder/cs160/Project/image/white.png");
+    ImageFormat(&img, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);
+    remove_background(img);
+    White = LoadTextureFromImage(img);
+    UnloadImage(img);
+
+    Image undo_button = LoadImage("C:/Users/HOANG ANH/minifolder/cs160/Project/image/undo.png");
+    ImageFormat(&undo_button, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);
+    remove_background(undo_button);
+    UndoTex = LoadTextureFromImage(undo_button);
+    UnloadImage(undo_button);
+
+    img = LoadImage("C:/Users/HOANG ANH/minifolder/cs160/Project/image/redo.png");
+    ImageFormat(&img, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);
+    remove_background(img);
+    RedoButton = LoadTextureFromImage(img);
+    UnloadImage(img);
+
+    img = LoadImage("C:/Users/HOANG ANH/minifolder/cs160/Project/image/skip.png");
+    SkipButton = LoadTextureFromImage(img);
+    UnloadImage(img);
+
+    img = LoadImage("C:/Users/HOANG ANH/minifolder/cs160/Project/image/exit.png");
+    ImageFormat(&img, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);
+    remove_background(img);
+    ExitButton = LoadTextureFromImage(img);
+    UnloadImage(img);
+}
+
+void IMG::remove_background(Image &to_remove) {
+    int H = to_remove.height;
+    int W = to_remove.width;
+
+    for (int y = 0; y < H; y++) {
+        for (int x = 0; x < W; x++) {
+            Color c = GetImageColor(to_remove, x, y);
+            if ((c.r >= 237 && c.g >= 237 && c.b >= 237)) {
+                ImageDrawPixel(&to_remove, x, y, {0, 0, 0, 0});
+            }
+        }
+    }
+}
