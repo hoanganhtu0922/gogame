@@ -2,35 +2,35 @@
 #include "IMG.h"
 
 IMG::IMG() {
-    Image img = LoadImage("C:/Users/HOANG ANH/minifolder/cs160/Project/image/black.png");
+    Image img = LoadImage("../../image/black.png");
     ImageFormat(&img, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);
     remove_background(img);
     Black = LoadTextureFromImage(img);
     UnloadImage(img);
 
-    img = LoadImage("C:/Users/HOANG ANH/minifolder/cs160/Project/image/white.png");
+    img = LoadImage("../../image/white.png");
     ImageFormat(&img, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);
     remove_background(img);
     White = LoadTextureFromImage(img);
     UnloadImage(img);
 
-    Image undo_button = LoadImage("C:/Users/HOANG ANH/minifolder/cs160/Project/image/undo.png");
+    Image undo_button = LoadImage("../../image/undo.png");
     ImageFormat(&undo_button, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);
     remove_background(undo_button);
     UndoTex = LoadTextureFromImage(undo_button);
     UnloadImage(undo_button);
 
-    img = LoadImage("C:/Users/HOANG ANH/minifolder/cs160/Project/image/redo.png");
+    img = LoadImage("../../image/redo.png");
     ImageFormat(&img, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);
     remove_background(img);
     RedoButton = LoadTextureFromImage(img);
     UnloadImage(img);
 
-    img = LoadImage("C:/Users/HOANG ANH/minifolder/cs160/Project/image/skip.png");
+    img = LoadImage("../../image/skip.png");
     SkipButton = LoadTextureFromImage(img);
     UnloadImage(img);
 
-    img = LoadImage("C:/Users/HOANG ANH/minifolder/cs160/Project/image/exit.png");
+    img = LoadImage("../../image/exit.png");
     ImageFormat(&img, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);
     remove_background(img);
     ExitButton = LoadTextureFromImage(img);

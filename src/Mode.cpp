@@ -1,5 +1,6 @@
 #include "Mode.h"
 #include "Menu.h"
+
 #include <string>
 
 static void DrawCenteredText(const char* text, int fontSize, int y, Color color) {
@@ -23,7 +24,7 @@ static void DrawButton(Rectangle r,const char* label, bool hover) {
 
 void Mode::Run() {
     std::string VS[2] = {"1 VS 1", "VS AI"};
-    std::string Board[3] = {"11 x 11", "13 x 13", "19 x 19"};
+    std::string Board[3] = {"19 x 19", "11 x 11", "13 x 13"};
     std::string Med[3] = {"EASY", "MEDIUM", "HARD"};
 
     SetTargetFPS(60);
@@ -73,6 +74,15 @@ void Mode::Run() {
         Rectangle src = { 0, 0, (float)target.texture.width, (float)-target.texture.height };
         Rectangle dst = { offsetX, offsetY, scaled, scaled };
         DrawTexturePro(target.texture, src, dst, {0,0}, 0.0f, WHITE);
+
+        if (CountBoard % 3 == 0) {
+            InitializeGameParameters(11);
+        } else if (CountBoard % 3 == 1) {
+            InitializeGameParameters(13);
+        } else {
+            InitializeGameParameters(19);
+        }
+
         EndDrawing();
         if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
             if (HoverVS) { CountVS++; }

@@ -106,7 +106,7 @@ bool Board::ValidMove(int x, int y, int turn) {
     }
 
     // Check if the new stone has any liberties
-    std::vector<std::vector<int>> board(19, std::vector<int>(19, -1));
+    std::vector<std::vector<int>> board(gridSize, std::vector<int>(gridSize, -1));
     for (const auto &p : temp_points) {
         board[p.x][p.y] = p.black;
     }
@@ -122,7 +122,7 @@ bool Board::ValidMove(int x, int y, int turn) {
         for (int dir = 0; dir < 4; dir++) {
             int nx = x + X[dir];
             int ny = y + Y[dir];
-            if (nx >= 0 && nx < 19 && ny >= 0 && ny < 19) {
+            if (nx >= 0 && nx < gridSize && ny >= 0 && ny < gridSize) {
                 if (board[nx][ny] == -1) {
                     return true; // has liberty
                 } else if (board[nx][ny] == turn) {
@@ -148,18 +148,19 @@ void Board::DrawStone() {
     }
 }
 
-void Board::StonesHoverEffect(int turn) {
+void Board::StonesHoverEffect(int black) {
     Vector2 mouse = GetMousePosition();
-    Color blur = {255, 255, 255, 100};
+    Color blurBlack = {255, 255, 255, 150};
+    Color blurWhite = {255, 255, 255, 220};
     
     int i = (int)((mouse.x - margin + cellSize/2) / cellSize);
     int j = (int)((mouse.y - margin + cellSize/2) / cellSize);
 
-    if (i >= 0 && i < gridSize && j >= 0 && j < gridSize && ValidMove(i, j, turn)) {
-        if (turn) {
-            DrawTextureEx(img.Black, {(float)(margin + i * cellSize - img.Black.width * 0.03f / 2), (float)(margin + j * cellSize - img.Black.height * 0.03f / 2) }, 0.0f, 0.03f, blur);
+    if (i >= 0 && i < gridSize && j >= 0 && j < gridSize && ValidMove(i, j, black)) {
+        if (black) {
+            DrawTextureEx(img.Black, {(float)(margin + i * cellSize - img.Black.width * 0.03f / 2), (float)(margin + j * cellSize - img.Black.height * 0.03f / 2) }, 0.0f, 0.03f, blurBlack);
         } else {
-            DrawTextureEx(img.White, {(float)(margin + i * cellSize - img.White.width * 0.03f / 2), (float)(margin + j * cellSize - img.White.height * 0.03f / 2) }, 0.0f, 0.03f, blur);
+            DrawTextureEx(img.White, {(float)(margin + i * cellSize - img.White.width * 0.03f / 2), (float)(margin + j * cellSize - img.White.height * 0.03f / 2) }, 0.0f, 0.03f, blurWhite);
         }
     }
 }
@@ -169,10 +170,8 @@ void Board::DrawBoard() {
     ClearBackground(wood);
 
     for (int k = 0; k < gridSize; ++k) {
-        DrawLine(margin, margin + k * cellSize,
-                    margin + (gridSize - 1) * cellSize, margin + k * cellSize, BLACK);
-        DrawLine(margin + k * cellSize, margin,
-                    margin + k * cellSize, margin + (gridSize - 1) * cellSize, BLACK);
+        DrawLine(margin, margin + k * cellSize, margin + (gridSize - 1) * cellSize, margin + k * cellSize, BLACK);
+        DrawLine(margin + k * cellSize, margin, margin + k * cellSize, margin + (gridSize - 1) * cellSize, BLACK);
     }
 
     int star[3] = {3, 9, 15};
@@ -184,6 +183,10 @@ void Board::DrawBoard() {
 void Board::PlaceStone(int i, int j) {
     if (ValidMove(i, j, 1 ^ black) == true) {
         turn++;
+        if (maxturn < turn) {
+            maxturn = turn;
+        }
+        
         black ^= 1;
         int is_captured = 0;
         PlaySound(sounds.place_stone);
@@ -223,6 +226,7 @@ void Board::PressSkipButton() {
 
 void Board::PressExitButton() {
     PlaySound(sounds.press);
+    ExitToMenu = 1;
 }
 
 std::string Board::TypeOfButton() {
@@ -341,7 +345,8 @@ void Board::LoopGame() {
     RenderTexture2D target = LoadRenderTexture(screenSize, screenSize);
     SetTextureFilter(target.texture, TEXTURE_FILTER_BILINEAR);
 
-    while (!WindowShouldClose()) {
+    int inputmouse = 1;
+    while (!WindowShouldClose() && !ExitToMenu) {
         // Compute scale for current window
         int winW = GetScreenWidth();
         int winH = GetScreenHeight();
@@ -366,12 +371,15 @@ void Board::LoopGame() {
         BeginTextureMode(target);
         DrawBoard();
         StonesHoverEffect(black ^ 1);
-        Action();
+        if (inputmouse == 0)
+            Action();
+            
         DrawButton(HoverUndo, HoverRedo, HoverSkip, HoverExit);
         DrawWhiteRectangle();
         DrawBlackRectangle();
         DrawStone();
         EndTextureMode();
+        inputmouse = 0;
 
         // Present scaled to the actual window with letterboxing
         BeginDrawing();
@@ -384,6 +392,4 @@ void Board::LoopGame() {
 
     SaveGame(*this, "SaveGame.txt");
     UnloadRenderTexture(target);
-    CloseAudioDevice();
-    CloseWindow();
 }

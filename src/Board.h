@@ -57,8 +57,9 @@ public:
 
 	void LoopGame();
 	
-	int turn = 0;
+	int turn = 0, maxturn = 0;
 	int black = 0;
+	bool ExitToMenu = false;
 	std::vector<point> points;
 	soundEffect sounds; 
 	IMG img;

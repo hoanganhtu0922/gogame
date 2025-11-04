@@ -1,10 +1,12 @@
+#pragma once
 #include "Menu.h"
 #include "Mode.h"
 #include <string>
+#include <iostream>
 
-static void DrawCenteredText(const char* text, int fontSize, int y, Color color) {
-    int width = MeasureText(text, fontSize);
-    DrawText(text, (screenSize - width) / 2, y, fontSize, color);
+static void DrawCenteredText(const char* text, float fontSize, int y, Color color) {
+    Vector2 sz = MeasureTextEx(uiFont, text, fontSize, 1.0f);
+    DrawTextEx(uiFont, text, {(float)(screenSize - sz.x)/2.0f, (float)y}, fontSize, 1.0f, color);
 }
 
 static bool IsMouseOverRect(Rectangle r, Vector2 m) {
@@ -17,13 +19,16 @@ static void DrawButton(Rectangle r,const char* label, bool hover) {
     DrawRectangleRounded(r, 0.2f, 8, bg);
     DrawRectangleRoundedLines(r, 0.2f, 8, border);
     int fontSize = 28;
-    int textWidth = MeasureText(label, fontSize);
-    DrawText(label, (int)(r.x + (r.width - textWidth) / 2), (int)(r.y + (r.height - fontSize) / 2), fontSize, RAYWHITE);
+    float fs = 28.0f, sp = 1.0f;
+
+    Vector2 sz = MeasureTextEx(uiFont, label, fs, sp);
+    DrawTextEx(uiFont, label, {(r.x + (r.width - sz.x) / 2), (r.y + (r.height - sz.y) / 2)}, fs, sp, RAYWHITE);
 }
 
 MenuChoice Menu::Run() {
     SetTargetFPS(60);
-
+    EnsureUIFont();
+    
     // Render to a fixed virtual square and scale to window
     RenderTexture2D target = LoadRenderTexture(screenSize, screenSize);
     SetTextureFilter(target.texture, TEXTURE_FILTER_BILINEAR);
@@ -79,7 +84,10 @@ MenuChoice Menu::Run() {
                 return MenuChoice::Continue;
             }
 
-            if (HoverPlay) { UnloadRenderTexture(target); return MenuChoice::Start1v1; }
+            if (HoverPlay) { 
+                UnloadRenderTexture(target); return MenuChoice::Start1v1; 
+            }
+
             if (HoverSetting) { 
                 UnloadRenderTexture(target); 
             }
@@ -90,7 +98,10 @@ MenuChoice Menu::Run() {
                 mode.Run();
             }
 
-            if (HoverExit)  { UnloadRenderTexture(target); return MenuChoice::Exit; }
+            if (HoverExit)  { 
+                UnloadRenderTexture(target); 
+                return MenuChoice::Exit; 
+            }
         }
     }
     UnloadRenderTexture(target);
