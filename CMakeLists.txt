@@ -8,7 +8,11 @@ add_definitions(-DWIN32_LEAN_AND_MEAN -DNOMINMAX)
 file(GLOB_RECURSE HEADER_FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
 file(GLOB_RECURSE SOURCE_FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 
-add_executable(${PROJECT_NAME} ${HEADER_FILES} ${SOURCE_FILES})
+add_executable(Project ${HEADER_FILES} ${SOURCE_FILES})
+
+target_include_directories(Project PRIVATE
+	${CMAKE_SOURCE_DIR}/include
+)
 
 add_subdirectory("raylib")
 
