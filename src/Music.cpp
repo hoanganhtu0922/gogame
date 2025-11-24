@@ -2,7 +2,7 @@
 #include "Music.h"
 
 void MusicBackGround::setinitial() {
-    bgm = LoadMusicStream("../../sound/themesong.mp3");
+    bgm = LoadMusicStream("../../assets/sound/themesong.mp3");
     PlayMusicStream(bgm);
     SetMusicVolume(bgm, 0.4f); 
 }

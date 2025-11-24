@@ -6,17 +6,22 @@ Board LoadGame(std::string filename) {
     if (!in.is_open()) return Board();
 
     Board board;
-    in >> board.turn;
-    in >> board.black;
-
-    size_t pointsCount;
-    in >> pointsCount;
-    board.points.resize(pointsCount);
-
-    for (auto& p : board.points) {
-        in >> p.x >> p.y >> p.black;
+    in >> board.turn >> board.maxturn;
+    for (int i = 1; i <= board.maxturn; i++) {
+        int sz;
+        in >> sz;
+        in >> isSkip[i] >> StageTurn[i];
+        stage[i].clear();
+        for (int j = 0; j < sz; j++) {
+            point p;
+            in >> p.x >> p.y >> p.black;
+            stage[i].push_back(p);
+        }
     }
 
+    board.points = stage[board.turn];
+    board.black = StageTurn[board.turn];
+    
     in.close();
     return board;
 }

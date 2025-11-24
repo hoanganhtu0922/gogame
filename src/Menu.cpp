@@ -1,28 +1,10 @@
 #pragma once
 #include "Menu.h"
-#include "Mode.h"
-#include <string>
-#include <iostream>
+
 
 static void DrawCenteredText(const char* text, float fontSize, int y, Color color) {
     Vector2 sz = MeasureTextEx(uiFont, text, fontSize, 1.0f);
     DrawTextEx(uiFont, text, {(float)(screenSize - sz.x)/2.0f, (float)y}, fontSize, 1.0f, color);
-}
-
-static bool IsMouseOverRect(Rectangle r, Vector2 m) {
-    return m.x >= r.x && m.x <= r.x + r.width && m.y >= r.y && m.y <= r.y + r.height;
-}
-
-static void DrawButton(Rectangle r,const char* label, bool hover) {
-    Color bg = hover ? Color{50, 120, 200, 255} : Color{30, 30, 30, 255};
-    Color border = {220, 220, 220, 255};
-    DrawRectangleRounded(r, 0.2f, 8, bg);
-    DrawRectangleRoundedLines(r, 0.2f, 8, border);
-    int fontSize = 28;
-    float fs = 28.0f, sp = 1.0f;
-
-    Vector2 sz = MeasureTextEx(uiFont, label, fs, sp);
-    DrawTextEx(uiFont, label, {(r.x + (r.width - sz.x) / 2), (r.y + (r.height - sz.y) / 2)}, fs, sp, RAYWHITE);
 }
 
 MenuChoice Menu::Run() {
@@ -33,7 +15,16 @@ MenuChoice Menu::Run() {
     RenderTexture2D target = LoadRenderTexture(screenSize, screenSize);
     SetTextureFilter(target.texture, TEXTURE_FILTER_BILINEAR);
 
+    //Button on main menu 
+    float XMiddle = (float)(screenSize  - 519.0f * 0.35f) / 2;
+    MenuButton Continue(XMiddle, 200.f, 0, "CONTINUE");
+    MenuButton Play(XMiddle, 300.f, 0, "PLAY");
+    MenuButton Mod(XMiddle, 400.f, 0, "MODE");
+    MenuButton Sett(XMiddle, 500.f, 0, "SETTING");
+    MenuButton Exit(XMiddle, 600.f, 0, "EXIT");
+
     while (!WindowShouldClose()) {
+        PlayMusicBackGround.Run();
         // Compute scale for current window
         int winW = GetScreenWidth();
         int winH = GetScreenHeight();
@@ -45,31 +36,19 @@ MenuChoice Menu::Run() {
         // Map mouse to the real coords 
         SetMouseOffset((int)-offsetX, (int)-offsetY);
         SetMouseScale(1.0f/scale, 1.0f/scale);
-
-        Vector2 mouse = GetMousePosition();
-        Rectangle ContinueButton = { (float)(screenSize / 2 - 140), (float)(screenSize / 2 - 110), 280.0f, 60.0f };
-        Rectangle PlayButton = { (float)(screenSize / 2 - 140), (float)(screenSize / 2 - 30), 280.0f, 60.0f };
-        Rectangle ModeButton  = { (float)(screenSize / 2 - 140), (float)(screenSize / 2 + 50), 280.0f, 60.0f };
-        Rectangle SettingButton =  { (float)(screenSize / 2 - 140), (float)(screenSize / 2 + 130), 280.0f, 60.0f };
-        Rectangle ExitButton = { (float)(screenSize / 2 - 140), (float)(screenSize / 2 + 210), 280.0f, 60.0f };
-
-        bool HoverContinue = IsMouseOverRect(ContinueButton, mouse);
-        bool HoverPlay = IsMouseOverRect(PlayButton, mouse);
-        bool HoverExit  = IsMouseOverRect(ExitButton, mouse);
-        bool HoverSetting = IsMouseOverRect(SettingButton, mouse);
-        bool HoverMode  = IsMouseOverRect(ModeButton, mouse);
-
         // Draw to virtual render target
+        
         BeginTextureMode(target);
-        ClearBackground({30, 30, 30, 255});
-        DrawCenteredText("GO BOARD", 48, 120, RAYWHITE);
-        DrawButton(ContinueButton, "CONTINUE", HoverContinue);
-        DrawButton(PlayButton, "PLAY", HoverPlay);
-        DrawButton(ModeButton, "MODE", HoverMode);
-        DrawButton(SettingButton, "SETTING", HoverSetting);
-        DrawButton(ExitButton, "EXIT", HoverExit);
-        EndTextureMode();
 
+        DrawTextureEx(BackGround, {0, 0}, 0.0f, screenSize / 1024.0f, WHITE);
+        DrawCenteredText("GO BOARD", 56.0f, 120, BLACK);
+        Continue.DrawButton();
+        Play.DrawButton();
+        Mod.DrawButton();
+        Sett.DrawButton();
+        Exit.DrawButton();
+        EndTextureMode();
+        
         // Present scaled to the actual window with letterboxing
         BeginDrawing();
         ClearBackground(BLACK);
@@ -78,32 +57,33 @@ MenuChoice Menu::Run() {
         DrawTexturePro(target.texture, src, dst, {0,0}, 0.0f, WHITE);
         EndDrawing();
 
-        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-            if (HoverContinue) {
-                UnloadRenderTexture(target);
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+            if (Continue.IsHover()) {
                 return MenuChoice::Continue;
             }
 
-            if (HoverPlay) { 
-                UnloadRenderTexture(target); return MenuChoice::Start1v1; 
+            if (Play.IsHover()) {
+                return MenuChoice::Play;
             }
 
-            if (HoverSetting) { 
-                UnloadRenderTexture(target); 
+            if (Mod.IsHover()) {
+                Mode T;
+                T.Run();
+                continue;
             }
 
-            if (HoverMode) {
-                UnloadRenderTexture(target);
-                Mode mode;
-                mode.Run();
+            if (Sett.IsHover()) {
+                Setting St;
+                St.Run();
+                continue;
             }
 
-            if (HoverExit)  { 
-                UnloadRenderTexture(target); 
-                return MenuChoice::Exit; 
+            if (Exit.IsHover()) {
+                return MenuChoice::Exit;
             }
         }
     }
+
     UnloadRenderTexture(target);
     return MenuChoice::Exit;
 }

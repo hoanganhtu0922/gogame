@@ -86,7 +86,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\HOANG ANH\minifolder\cs160\Project\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\HOANG ANH\minifolder\cs160\Project\include;C:\Users\HOANG ANH\minifolder\cs160\Project\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -108,10 +108,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;WIN32_LEAN_AND_MEAN;NOMINMAX;PLATFORM_DESKTOP;GRAPHICS_API_OPENGL_33;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\HOANG ANH\minifolder\cs160\Project\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\HOANG ANH\minifolder\cs160\Project\include;C:\Users\HOANG ANH\minifolder\cs160\Project\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\HOANG ANH\minifolder\cs160\Project\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\HOANG ANH\minifolder\cs160\Project\include;C:\Users\HOANG ANH\minifolder\cs160\Project\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -138,7 +138,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\HOANG ANH\minifolder\cs160\Project\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\HOANG ANH\minifolder\cs160\Project\include;C:\Users\HOANG ANH\minifolder\cs160\Project\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -161,10 +161,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;NOMINMAX;PLATFORM_DESKTOP;GRAPHICS_API_OPENGL_33;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\HOANG ANH\minifolder\cs160\Project\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\HOANG ANH\minifolder\cs160\Project\include;C:\Users\HOANG ANH\minifolder\cs160\Project\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\HOANG ANH\minifolder\cs160\Project\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\HOANG ANH\minifolder\cs160\Project\include;C:\Users\HOANG ANH\minifolder\cs160\Project\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -191,7 +191,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\HOANG ANH\minifolder\cs160\Project\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\HOANG ANH\minifolder\cs160\Project\include;C:\Users\HOANG ANH\minifolder\cs160\Project\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -214,10 +214,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;NOMINMAX;PLATFORM_DESKTOP;GRAPHICS_API_OPENGL_33;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\HOANG ANH\minifolder\cs160\Project\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\HOANG ANH\minifolder\cs160\Project\include;C:\Users\HOANG ANH\minifolder\cs160\Project\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\HOANG ANH\minifolder\cs160\Project\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\HOANG ANH\minifolder\cs160\Project\include;C:\Users\HOANG ANH\minifolder\cs160\Project\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -244,7 +244,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\HOANG ANH\minifolder\cs160\Project\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\HOANG ANH\minifolder\cs160\Project\include;C:\Users\HOANG ANH\minifolder\cs160\Project\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -266,10 +266,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;NOMINMAX;PLATFORM_DESKTOP;GRAPHICS_API_OPENGL_33;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\HOANG ANH\minifolder\cs160\Project\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\HOANG ANH\minifolder\cs160\Project\include;C:\Users\HOANG ANH\minifolder\cs160\Project\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\HOANG ANH\minifolder\cs160\Project\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\HOANG ANH\minifolder\cs160\Project\include;C:\Users\HOANG ANH\minifolder\cs160\Project\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -352,23 +352,21 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\HOANG ANH\minifolder\cs160\Project\src\Board.h" />
-    <ClInclude Include="C:\Users\HOANG ANH\minifolder\cs160\Project\src\IMG.h" />
-    <ClInclude Include="C:\Users\HOANG ANH\minifolder\cs160\Project\src\Menu.h" />
-    <ClInclude Include="C:\Users\HOANG ANH\minifolder\cs160\Project\src\Mode.h" />
-    <ClInclude Include="C:\Users\HOANG ANH\minifolder\cs160\Project\src\Setting.h" />
-    <ClInclude Include="C:\Users\HOANG ANH\minifolder\cs160\Project\src\initial.h" />
-    <ClInclude Include="C:\Users\HOANG ANH\minifolder\cs160\Project\src\soundEffect.h" />
     <ClCompile Include="C:\Users\HOANG ANH\minifolder\cs160\Project\src\1vs1.cpp" />
     <ClCompile Include="C:\Users\HOANG ANH\minifolder\cs160\Project\src\Board.cpp" />
+    <ClCompile Include="C:\Users\HOANG ANH\minifolder\cs160\Project\src\Button.cpp" />
     <ClCompile Include="C:\Users\HOANG ANH\minifolder\cs160\Project\src\IMG.cpp" />
     <ClCompile Include="C:\Users\HOANG ANH\minifolder\cs160\Project\src\LoadGame.cpp" />
     <ClCompile Include="C:\Users\HOANG ANH\minifolder\cs160\Project\src\Menu.cpp" />
     <ClCompile Include="C:\Users\HOANG ANH\minifolder\cs160\Project\src\Mode.cpp" />
+    <ClCompile Include="C:\Users\HOANG ANH\minifolder\cs160\Project\src\Music.cpp" />
     <ClCompile Include="C:\Users\HOANG ANH\minifolder\cs160\Project\src\SaveGame.cpp" />
     <ClCompile Include="C:\Users\HOANG ANH\minifolder\cs160\Project\src\Setting.cpp" />
+    <ClCompile Include="C:\Users\HOANG ANH\minifolder\cs160\Project\src\font.cpp" />
+    <ClCompile Include="C:\Users\HOANG ANH\minifolder\cs160\Project\src\initial.cpp" />
     <ClCompile Include="C:\Users\HOANG ANH\minifolder\cs160\Project\src\main.cpp" />
     <ClCompile Include="C:\Users\HOANG ANH\minifolder\cs160\Project\src\soundEffect.cpp" />
+    <ClCompile Include="C:\Users\HOANG ANH\minifolder\cs160\Project\src\table.cpp" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

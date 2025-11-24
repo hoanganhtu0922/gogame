@@ -1,12 +1,8 @@
 #pragma once
 #include "Board.h"
-#include <algorithm>
-#include "SaveGame.h"
-#include "SaveGame.h"
-#include <algorithm>
 
 std::array<std::vector<point>, 100000> stage;
-bool StageTurn[100000];
+bool StageTurn[100000], isSkip[100000];
 
 std::vector<std::pair<int, int>> Board::ListOfCapturedStone(int x, int y, int turn) {
     std::vector<std::vector<int>> board(19, std::vector<int>(19, -1));
@@ -77,7 +73,7 @@ std::vector<std::pair<int, int>> Board::ListOfCapturedStone(int x, int y, int tu
     return Remove;
 }
 
-void Board::RemoveCapturedStones(int x, int y, int turn, int &is_captured) {
+void Board::RemoveCapturedStones(int x, int y, int turn, std::vector<point> &points, int &is_captured) {
     std::vector<std::pair<int, int>> toRemove = ListOfCapturedStone(x, y, turn);
     for (const auto &pos : toRemove) {
         points.erase(std::remove_if(points.begin(), points.end(),
@@ -90,20 +86,115 @@ void Board::RemoveCapturedStones(int x, int y, int turn, int &is_captured) {
     }
 }
 
-bool Board::ValidMove(int x, int y, int turn) {
+bool Board::detectWin() {
+    cntBlack = 0;
+    cntWhite = 6;
+    int board[20][20], vis[20][20];
+
+    for (int i = 0; i < 20; i++) {
+        for (int j = 0; j < 20; j++) {
+            board[i][j] = -1;
+            vis[i][j] = 0;
+        }
+    }
+
     for (const auto &p : points) {
+        if (p.black) {
+            cntBlack++;
+        } else {
+            cntWhite++;
+        }
+
+        board[p.x][p.y] = p.black;
+    }
+
+    for (int i = 0; i < gridSize; i++) {
+        for (int j = 0; j < gridSize; j++) {
+            if (board[i][j] == -1 && vis[i][j] == 0) {
+                int cnt = 0;
+                std::queue<std::pair<int, int>> q;
+                q.push({i, j});
+                vis[i][j] = 1;
+                int adjBlack = 0, adjWhite = 0, adjOut = 0;
+
+                while (!q.empty()) {
+                    int x = q.front().first;
+                    int y = q.front().second;
+
+                    q.pop();
+                    cnt++;
+
+                    for (int dir = 0; dir < 4; dir++) {
+                        int nx = x + X[dir];
+                        int ny = y + Y[dir];
+
+                        if (nx >= 0 && nx < gridSize && ny >= 0 && ny < gridSize) {
+                            if (board[nx][ny] == -1 && vis[nx][ny] == 0) {
+                                vis[nx][ny] = 1;
+                                q.push({nx, ny});
+                            } else if (board[nx][ny] == 0) {
+                                adjWhite = 1;
+                            } else if (board[nx][ny] == 1) {
+                                adjBlack = 1;
+                            }
+                        } else {
+                            adjOut = 1;
+                        }
+                    }
+                }
+
+                if (adjBlack && !adjWhite && !adjOut) {
+                    cntBlack += cnt;
+                } else if (adjWhite && !adjBlack && !adjOut) {
+                    cntWhite += cnt;
+                }
+            }
+        }
+    }
+
+    if (cntWhite >= cntBlack) {
+        return 0;
+    } else {
+        return 1;
+    }
+}
+
+bool ComparePoints(const point &a, const point &b) {
+    return std::vector<int>{a.x, a.y, a.black} < std::vector<int>{b.x, b.y, b.black};
+}
+
+bool Board::isTheSame(std::vector<point> a, std::vector<point> b) {
+    if (a.size() != b.size()) return false;
+    sort(a.begin(), a.end(), ComparePoints);
+    sort(b.begin(), b.end(), ComparePoints);
+    return a == b;
+}
+
+bool Board::ValidMove(int x, int y, int black) {
+    for (auto &p : points) {
         if (p.x == x && p.y == y) {
             return false; // position already occupied
         }
     }
 
     std::vector<point> temp_points = points;
-    temp_points.push_back({x, y, (bool)turn});
-    std::vector<std::pair<int, int>> captured = ListOfCapturedStone(x, y, turn);
+    temp_points.push_back({x, y, (bool)black});
+    std::vector<std::pair<int, int>> captured = ListOfCapturedStone(x, y, black);
+
+    int is_captured = 0;
+    RemoveCapturedStones(x, y, black, temp_points, is_captured);
+    
+    if (turn >= 1) {
+        // Check for Ko rule violation
+        if (isTheSame(temp_points, stage[turn - 1])) {
+            return false; // Ko rule violation
+        }
+    }
 
     if (!captured.empty()) {
         return true; // capturing move is valid
     }
+
 
     // Check if the new stone has any liberties
     std::vector<std::vector<int>> board(gridSize, std::vector<int>(gridSize, -1));
@@ -125,7 +216,7 @@ bool Board::ValidMove(int x, int y, int turn) {
             if (nx >= 0 && nx < gridSize && ny >= 0 && ny < gridSize) {
                 if (board[nx][ny] == -1) {
                     return true; // has liberty
-                } else if (board[nx][ny] == turn) {
+                } else if (board[nx][ny] == black) {
                     q.push({nx, ny});
                     board[nx][ny] = -2; // mark as visited
                 }
@@ -138,12 +229,12 @@ bool Board::ValidMove(int x, int y, int turn) {
 
 void Board::DrawStone() {
     for (auto &s : points) {
-        int cx = margin + s.x * cellSize - img.Black.width * 0.03f / 2;
-        int cy = margin + s.y * cellSize - img.Black.height * 0.03f / 2;
+        int cx = margin + s.x * cellSize - img.Black.width * 0.06f / 2;
+        int cy = margin + s.y * cellSize - img.Black.height * 0.06f / 2;
         if (s.black) {
-            DrawTextureEx(img.Black, {(float)cx, (float)cy }, 0.0f, 0.03f, WHITE);
+            DrawTextureEx(img.Black, {(float)cx, (float)cy }, 0.0f, 0.06f, WHITE);
         } else {
-            DrawTextureEx(img.White, {(float)cx, (float)cy }, 0.0f, 0.03f, WHITE);
+            DrawTextureEx(img.White, {(float)cx, (float)cy }, 0.0f, 0.06f, WHITE);
         }
     }
 }
@@ -158,9 +249,9 @@ void Board::StonesHoverEffect(int black) {
 
     if (i >= 0 && i < gridSize && j >= 0 && j < gridSize && ValidMove(i, j, black)) {
         if (black) {
-            DrawTextureEx(img.Black, {(float)(margin + i * cellSize - img.Black.width * 0.03f / 2), (float)(margin + j * cellSize - img.Black.height * 0.03f / 2) }, 0.0f, 0.03f, blurBlack);
+            DrawTextureEx(img.Black, {(float)(margin + i * cellSize - img.Black.width * 0.06f / 2), (float)(margin + j * cellSize - img.Black.height * 0.06f / 2) }, 0.0f, 0.06f, blurBlack);
         } else {
-            DrawTextureEx(img.White, {(float)(margin + i * cellSize - img.White.width * 0.03f / 2), (float)(margin + j * cellSize - img.White.height * 0.03f / 2) }, 0.0f, 0.03f, blurWhite);
+            DrawTextureEx(img.White, {(float)(margin + i * cellSize - img.White.width * 0.06f / 2), (float)(margin + j * cellSize - img.White.height * 0.06f / 2) }, 0.0f, 0.06f, blurWhite);
         }
     }
 }
@@ -183,14 +274,12 @@ void Board::DrawBoard() {
 void Board::PlaceStone(int i, int j) {
     if (ValidMove(i, j, 1 ^ black) == true) {
         turn++;
-        if (maxturn < turn) {
-            maxturn = turn;
-        }
+        maxturn = turn;
         
         black ^= 1;
         int is_captured = 0;
         PlaySound(sounds.place_stone);
-        RemoveCapturedStones(i, j, black, is_captured);
+        RemoveCapturedStones(i, j, black, points, is_captured);
         points.push_back({i, j, (bool)(black)});
         if (is_captured) {
             PlaySound(sounds.win_some_stones);
@@ -198,12 +287,13 @@ void Board::PlaceStone(int i, int j) {
 
         stage[turn] = points;
         StageTurn[turn] = black;
-    } else {
-        PlaySound(sounds.error);
     }
 }
 
 void Board::PressRedoButton() {
+    turn = maxturn;
+    points = stage[turn];
+    black = StageTurn[turn];
     PlaySound(sounds.press);
 }
 
@@ -222,11 +312,20 @@ void Board::PressSkipButton() {
     black ^= 1;
     stage[turn] = points;
     StageTurn[turn] = black;
+    isSkip[turn] = 1;
+    if (isSkip[turn - 1]) {
+        matchEnd = 1;
+    }
 }
 
 void Board::PressExitButton() {
     PlaySound(sounds.press);
     ExitToMenu = 1;
+}
+
+void Board::PressGGButton() {
+    PlaySound(sounds.press);
+    matchEndGG = 1;
 }
 
 std::string Board::TypeOfButton() {
@@ -238,25 +337,27 @@ std::string Board::TypeOfButton() {
         return "InBoard";
     } 
 
-    if (mouse.x >= screenSize / 2 - 200 && mouse.x <= (float)(screenSize / 2 - 200 + img.UndoTex.width * 0.27) &&
-    mouse.y >= screenSize - 75 && mouse.y <= (float)(screenSize - 75 + img.UndoTex.height * 0.27)) {
-        return "Undo";
-    }
+    Rectangle undoRect = { (float)(screenSize / 2 - 200), (float)(screenSize - 75),
+                            img.UndoTex.width * 0.3f, img.UndoTex.height * 0.3f };
+    Rectangle skipRect = { (float)(screenSize / 2 - img.SkipButton.width * 0.06f), (float)(screenSize - 75),
+                            img.SkipButton.width * 0.06f, img.SkipButton.height * 0.06f };
+    Rectangle redoRect = { (float)(screenSize / 2 + 80), (float)(screenSize - 75),
+                            img.RedoButton.width * 0.06f, img.RedoButton.height * 0.06f };
+    Rectangle exitRect = { (float)(screenSize - 100), (float)(screenSize - 75),
+                           img.ExitButton.width * 0.3f, img.ExitButton.height * 0.3f };
 
-    if (mouse.x >= screenSize / 2 + 140 && mouse.x <= (float)(screenSize / 2 + 140 + img.RedoButton.width * 0.27) &&
-    mouse.y >= screenSize - 75 && mouse.y <= (float)(screenSize - 75 + img.RedoButton.height * 0.27)) {
-        return "Redo";
-    }
+    Rectangle GGRect = { (float)(screenSize / 2 - 320), (float)(screenSize - 75),
+                        img.GG.width * 0.06f, img.GG.height * 0.06f };
 
-    if (mouse.x >= (float)(screenSize / 2 - img.SkipButton.width * 0.08) && mouse.x <= (float)(screenSize / 2 + img.SkipButton.width * 0.08) &&
-    mouse.y >= screenSize - 80 && mouse.y <= (float)(screenSize - 80 + img.SkipButton.height * 0.16)) {
-        return "Skip";
-    }
+    auto inRect = [](Vector2 p, const Rectangle& r) {
+        return p.x >= r.x && p.x <= (r.x + r.width) && p.y >= r.y && p.y <= (r.y + r.height);
+    };
 
-    if (mouse.x >= (float)(screenSize - 85) && mouse.x <= (float)(screenSize - 85 + img.ExitButton.width * 0.09) &&
-    mouse.y >= screenSize - 85 && mouse.y <= (float)(screenSize - 85 + img.ExitButton.height * 0.09)) {
-        return "Exit";
-    }
+    if (inRect(mouse, undoRect)) return "Undo";
+    if (inRect(mouse, redoRect)) return "Redo";
+    if (inRect(mouse, skipRect)) return "Skip";
+    if (inRect(mouse, exitRect)) return "Exit";
+    if (inRect(mouse, GGRect)) return "GG";
 
     return "None";
 }
@@ -277,38 +378,46 @@ void Board::Action() {
             PressSkipButton();
         } else if (Type == "Exit") {
             PressExitButton();
+        } else if (Type == "GG") {
+            PressGGButton();
         }
     }
 }
 
-void Board::DrawButton(int HoverUndo, int HoverRedo, int HoverSkip, int HoverExit) {
+void Board::DrawButton(int HoverUndo, int HoverRedo, int HoverSkip, int HoverExit, int HoverGG) {
     float size = 1.1f;
     if (HoverUndo) {
-        DrawTextureEx(img.UndoTex, {(float)(screenSize / 2 - 200), (float)(screenSize - 75)}, 0.0f, 0.27f * size, WHITE);
+        DrawTextureEx(img.UndoTex, {(float)(screenSize / 2 - 200), (float)(screenSize - 75)}, 0.0f, 0.3f * size, WHITE);
     } else {
-        DrawTextureEx(img.UndoTex, {(float)(screenSize / 2 - 200), (float)(screenSize - 75)}, 0.0f, 0.27f, WHITE);
+        DrawTextureEx(img.UndoTex, {(float)(screenSize / 2 - 200), (float)(screenSize - 75)}, 0.0f, 0.3f, WHITE);
     }
 
     if (HoverSkip) {
-        DrawTextureEx(img.SkipButton, {(float)(screenSize / 2 - img.SkipButton.width * 0.08), (float)(screenSize - 80)}, 0.0f, 0.16f * size, WHITE);
+        DrawTextureEx(img.SkipButton, {(float)(screenSize / 2 - img.SkipButton.width * 0.06f), (float)(screenSize - 75)}, 0.0f, 0.06f * size, WHITE);
     } else {
-        DrawTextureEx(img.SkipButton, {(float)(screenSize / 2 - img.SkipButton.width * 0.08), (float)(screenSize - 80)}, 0.0f, 0.16f, WHITE);
+        DrawTextureEx(img.SkipButton, {(float)(screenSize / 2 - img.SkipButton.width * 0.06f), (float)(screenSize - 75)}, 0.0f, 0.06f, WHITE);
     }
 
     if (HoverRedo) {
-        DrawTextureEx(img.RedoButton, {(float)(screenSize / 2 + 140), (float)(screenSize - 75)}, 0.0f, 0.27f * size, WHITE);
+        DrawTextureEx(img.RedoButton, {(float)(screenSize / 2 + 80), (float)(screenSize - 75)}, 0.0f, 0.06f * size, WHITE);
     } else {
-        DrawTextureEx(img.RedoButton, {(float)(screenSize / 2 + 140), (float)(screenSize - 75)}, 0.0f, 0.27f, WHITE);
+        DrawTextureEx(img.RedoButton, {(float)(screenSize / 2 + 80), (float)(screenSize - 75)}, 0.0f, 0.06f, WHITE);
     }
 
     if (HoverExit) {
-        DrawTextureEx(img.ExitButton, {(float)(screenSize - 85), (float)(screenSize - 85)}, 0.0f, 0.09f * size, WHITE);
+        DrawTextureEx(img.ExitButton, {(float)(screenSize - 100), (float)(screenSize - 75)}, 0.0f, 0.3f * size, WHITE);
     } else {
-        DrawTextureEx(img.ExitButton, {(float)(screenSize - 85), (float)(screenSize - 85)}, 0.0f, 0.09f, WHITE);
+        DrawTextureEx(img.ExitButton, {(float)(screenSize - 100), (float)(screenSize - 75)}, 0.0f, 0.3f, WHITE);
+    }
+
+    if (HoverGG) {
+        DrawTextureEx(img.GG, {(float)(screenSize / 2 - 320), (float)(screenSize - 75)}, 0.0f, 0.06f * size, WHITE);
+    } else {
+        DrawTextureEx(img.GG, {(float)(screenSize / 2 - 320), (float)(screenSize - 75)}, 0.0f, 0.06f, WHITE);
     }
 }
 
-void Board::DrawWhiteRectangle() {
+void Board::DrawWhiteRectangle(int endgame) {
     Rectangle rect = {10, 10, screenSize / 2 - 20, margin - 20};
     Color border = {220, 220, 220, 180};
     Color shadowColor = {0, 0, 0, 50};         
@@ -321,9 +430,13 @@ void Board::DrawWhiteRectangle() {
     } else {
         DrawRectangleRounded(rect, 0.3f, 16, buttonColor);
     }
+
+    std::string number = TextFormat("%d", cntWhite) + std::string(".5"); 
+    Vector2 sz = MeasureTextEx(uiFont, number.c_str(), 21, 1.0f);
+    DrawTextEx(uiFont, number.c_str(), {(float)(rect.x + (rect.width - sz.x)/2.0f), (float)(rect.y + (rect.height - sz.y)/2.0f)}, 21, 1.0f, BLACK);
 }
 
-void Board::DrawBlackRectangle() {
+void Board::DrawBlackRectangle(int endgame) {
     Rectangle rect = {screenSize / 2 + 10, 10, screenSize / 2 - 20, margin - 20};
 
     Color darkMain = {20, 20, 20, 220};   
@@ -336,9 +449,14 @@ void Board::DrawBlackRectangle() {
     } else {
         DrawRectangleRounded(rect, 0.3f, 16, darkMain);
     }
+
+    std::string number = TextFormat("%d", cntBlack); 
+    Vector2 sz = MeasureTextEx(uiFont, number.c_str(), 21, 1.0f);
+    DrawTextEx(uiFont, number.c_str(), {(float)(rect.x + (rect.width - sz.x)/2.0f), (float)(rect.y + (rect.height - sz.y)/2.0f)}, 21, 1.0f, WHITE);
 }
 
 void Board::LoopGame() {
+    winningTable.run();
     SetTargetFPS(60);
 
     // Render to a fixed virtual square and scale to window
@@ -346,7 +464,8 @@ void Board::LoopGame() {
     SetTextureFilter(target.texture, TEXTURE_FILTER_BILINEAR);
 
     int inputmouse = 1;
-    while (!WindowShouldClose() && !ExitToMenu) {
+    while (!WindowShouldClose() && !ExitToMenu && !winningTable.exit) {
+        PlayMusicBackGround.Run();
         // Compute scale for current window
         int winW = GetScreenWidth();
         int winH = GetScreenHeight();
@@ -360,24 +479,37 @@ void Board::LoopGame() {
         SetMouseOffset((int)-offsetX, (int)-offsetY);
         SetMouseScale(1.0f/scale, 1.0f/scale);
 
-        int HoverUndo = 0, HoverRedo = 0, HoverSkip = 0, HoverExit = 0;
+        int HoverUndo = 0, HoverRedo = 0, HoverSkip = 0, HoverExit = 0, HoverGG = 0;
         std::string Type = TypeOfButton();
         if (Type == "Undo") HoverUndo = 1;
         else if (Type == "Redo") HoverRedo = 1;
         else if (Type == "Skip") HoverSkip = 1;
         else if (Type == "Exit") HoverExit = 1;
+        else if (Type == "GG") HoverGG = 1;
 
         // Draw to virtual render target
         BeginTextureMode(target);
         DrawBoard();
-        StonesHoverEffect(black ^ 1);
-        if (inputmouse == 0)
-            Action();
-            
-        DrawButton(HoverUndo, HoverRedo, HoverSkip, HoverExit);
-        DrawWhiteRectangle();
-        DrawBlackRectangle();
         DrawStone();
+        detectWin();
+
+        if (matchEnd || matchEndGG) {
+            if (matchEnd) {
+                winningTable.drawTable(detectWin());
+            } else {
+                winningTable.drawTable(black);
+            }
+        } else {
+            StonesHoverEffect(black ^ 1);
+            if (inputmouse == 0)
+                Action();
+
+            DrawButton(HoverUndo, HoverRedo, HoverSkip, HoverExit, HoverGG);
+        }
+
+        DrawWhiteRectangle(matchEnd || matchEndGG);
+        DrawBlackRectangle(matchEnd || matchEndGG);
+
         EndTextureMode();
         inputmouse = 0;
 
