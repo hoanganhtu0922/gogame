@@ -15,6 +15,10 @@
 #include "button.h"
 #include "SaveGame.h"
 #include <algorithm>
+#include "katago.h"
+#include <cstdlib>  
+#include <ctime>    
+#include "timer.h"
 
 
 //Forward-declaration
@@ -35,7 +39,8 @@ public:
 
 
 	std::vector<std::pair<int, int>> ListOfCapturedStone(int x, int y, int turn);
-
+	std::vector < std::vector <int>> conv(std::vector<point> points);
+	
 	void PressGGButton();
 	
 	void DrawBoard();
@@ -62,27 +67,36 @@ public:
 
 	void PressExitButton();
 
+	void PressResetButton();
+
 	void DrawWhiteRectangle(int endgame);
 
 	void DrawBlackRectangle(int endgame);
 
 	void DrawStone();
 
-	void DrawButton(int HoverUndo, int HoverRedo, int HoverSkip, int HoverExit, int HoverGG);
+	void DrawButton(int HoverUndo, int HoverRedo, int HoverSkip, int HoverExit, int HoverGG, int HoverReset);
 	
 	void Action();
 
 	void LoopGame();
 
+	void DrawTimer();
+
 	bool detectWin();
-	
-	int turn = 0, maxturn = 0;
+	void DrawBackground();
+
+	std::pair <int, int> randomMove();
+	std::pair <int, int> mediumMove();
+	int turn = 0, maxturn = 0, cntpass = 0;
 	int black = 0, cyc = 0, backtoMenu = 0, matchEndGG = 0, matchEnd = 0;
-	int cntBlack = 0, cntWhite = 6;
+	int cntBlack = 0, cntWhite = 6, placeStoneAlready = 0, timeBlack = Itime * 60, timeWhite = Itime * 60;
 	bool ExitToMenu = false;
+	Timer counterBlack, counterWhite;
 	std::vector<point> points;
 	soundEffect sounds; 
 	IMG img;
+	Texture2D BackGround;
 	table winningTable;
 };
 

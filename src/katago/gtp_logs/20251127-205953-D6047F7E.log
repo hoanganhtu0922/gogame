@@ -1,0 +1,111 @@
+2025-11-27 20:59:53+0700: Running with following config:
+allowResignation = true
+lagBuffer = 0.0
+logAllGTPCommunication = true
+logDir = gtp_logs
+logSearchInfo = true
+logSearchInfoForChosenMove = false
+logToStderr = false
+maxPlayouts = 500
+maxPlayoutsPondering = 3000
+maxTime = 0.5
+maxTimePondering = 60.0
+maxVisits = 300
+maxVisitsPondering = 5000
+numSearchThreads = 16
+ponderingEnabled = false
+resignConsecTurns = 3
+resignThreshold = -0.90
+rules = tromp-taylor
+searchFactorAfterOnePass = 0.50
+searchFactorAfterTwoPass = 0.25
+searchFactorWhenWinning = 0.40
+searchFactorWhenWinningThreshold = 0.95
+
+2025-11-27 20:59:53+0700: GTP Engine starting...
+2025-11-27 20:59:53+0700: KataGo v1.14.0
+2025-11-27 20:59:53+0700: Using TrompTaylor rules initially, unless GTP/GUI overrides this
+2025-11-27 20:59:53+0700: Using 16 CPU thread(s) for search
+2025-11-27 20:59:53+0700: nnRandSeed0 = 3144324678112972198
+2025-11-27 20:59:53+0700: After dedups: nnModelFile0 = model.gz useFP16 auto useNHWC auto
+2025-11-27 20:59:53+0700: Initializing neural net buffer to be size 19 * 19 exactly
+2025-11-27 20:59:53+0700: Eigen (CPU) backend thread 0: Model version 8
+2025-11-27 20:59:53+0700: Eigen (CPU) backend thread 0: Model name: b6c96-s1995008-d1329786
+2025-11-27 20:59:53+0700: Eigen (CPU) backend thread 4: Model version 8
+2025-11-27 20:59:53+0700: Eigen (CPU) backend thread 4: Model name: b6c96-s1995008-d1329786
+2025-11-27 20:59:53+0700: Eigen (CPU) backend thread 1: Model version 8
+2025-11-27 20:59:53+0700: Eigen (CPU) backend thread 1: Model name: b6c96-s1995008-d1329786
+2025-11-27 20:59:53+0700: Eigen (CPU) backend thread 3: Model version 8
+2025-11-27 20:59:53+0700: Eigen (CPU) backend thread 3: Model name: b6c96-s1995008-d1329786
+2025-11-27 20:59:53+0700: Eigen (CPU) backend thread 5: Model version 8
+2025-11-27 20:59:53+0700: Eigen (CPU) backend thread 5: Model name: b6c96-s1995008-d1329786
+2025-11-27 20:59:53+0700: Eigen (CPU) backend thread 6: Model version 8
+2025-11-27 20:59:53+0700: Eigen (CPU) backend thread 6: Model name: b6c96-s1995008-d1329786
+2025-11-27 20:59:53+0700: Eigen (CPU) backend thread 7: Model version 8
+2025-11-27 20:59:53+0700: Eigen (CPU) backend thread 7: Model name: b6c96-s1995008-d1329786
+2025-11-27 20:59:53+0700: Eigen (CPU) backend thread 2: Model version 8
+2025-11-27 20:59:53+0700: Eigen (CPU) backend thread 2: Model name: b6c96-s1995008-d1329786
+2025-11-27 20:59:53+0700: Loaded neural net with nnXLen 19 nnYLen 19
+2025-11-27 20:59:53+0700: Initializing board with boardXSize 19 boardYSize 19
+2025-11-27 20:59:53+0700: Loaded config default_gtp.cfg
+2025-11-27 20:59:53+0700: Loaded model model.gz
+2025-11-27 20:59:53+0700: Model name: b6c96-s1995008-d1329786
+2025-11-27 20:59:53+0700: GTP ready, beginning main protocol loop
+2025-11-27 20:59:57+0700: Controller: genmove b
+2025-11-27 20:59:58+0700: MoveNum: 0 HASH: CDCBC1F514D7E680FACD226074256633
+   A B C D E F G H J K L M N O P Q R S T
+19 . . . . . . . . . . . . . . . . . . .
+18 . . . . . . . . . . . . . . . . . . .
+17 . . . . . . . . . . . . . . . . . . .
+16 . . . . . . . . . . . . . . . . . . .
+15 . . . . . . . . . . . . . . . . . . .
+14 . . . . . . . . . . . . . . . . . . .
+13 . . . . . . . . . . . . . . . . . . .
+12 . . . . . . . . . . . . . . . @ . . .
+11 . . . . . . . . . . . . . . . . . . .
+10 . . . . . . . . . . . . . . . . . . .
+ 9 . . . . . . . . . . . . . . . . . . .
+ 8 . . . . . . . . . . . . . . . . . . .
+ 7 . . . . . . . . . . . . . . . . . . .
+ 6 . . . . . . . . . . . . . . . . . . .
+ 5 . . . . . . . . . . . . . . . . . . .
+ 4 . . . . . . . . . . . . . . . . . . .
+ 3 . . . . . . . . . . . . . . . . . . .
+ 2 . . . . . . . . . . . . . . . . . . .
+ 1 . . . . . . . . . . . . . . . . . . .
+
+koPOSITIONALscoreAREAtaxNONEsui1komi7.5
+Time taken: 0.547
+Root visits: 142
+New playouts: 142
+NN rows: 142
+NN batches: 95
+NN avg batch size: 1.49474
+PV: T19 S19 S18
+Tree:
+: T   0.35c W   5.79c S   1.87c ( +7.5 L  -2.6) N     142  --  T19 S19 S18
+---Black(^)---
+T19 : T   9.80c W  10.70c S   2.51c ( +9.5 L  -2.6) LCB  -86.20c P  0.27% WF   3.1 PSV       5 N       3  --  T19 S19 S18
+T13 : T  -5.50c W  -1.40c S   0.68c ( +4.2 L  -3.2) LCB  -93.17c P  0.28% WF   3.9 PSV       4 N       4  --  T13 T12 S12
+T15 : T  -5.77c W   2.22c S   1.35c ( +6.0 L  -2.7) LCB -128.83c P  0.28% WF   3.0 PSV       3 N       3  --  T15 A18 pass
+T10 : T  -5.55c W   2.37c S   1.32c ( +6.0 L  -2.7) LCB -128.43c P  0.28% WF   3.0 PSV       3 N       3  --  T10 A2 pass
+T11 : T  -5.93c W   1.70c S   1.18c ( +5.6 L  -2.8) LCB -128.85c P  0.28% WF   3.0 PSV       3 N       3  --  T11 A2 pass
+R10 : T  -3.65c W   3.91c S   1.62c ( +6.8 L  -2.5) LCB -126.86c P  0.28% WF   3.0 PSV       3 N       3  --  R10 A2 pass
+R11 : T  -4.02c W   3.42c S   1.53c ( +6.5 L  -2.6) LCB -127.15c P  0.28% WF   3.0 PSV       3 N       3  --  R11 B1 pass
+R12 : T  -4.16c W   3.56c S   1.54c ( +6.5 L  -2.7) LCB -128.09c P  0.28% WF   3.0 PSV       3 N       3  --  R12 S1 pass
+R13 : T  -3.64c W   3.81c S   1.63c ( +6.8 L  -2.6) LCB -126.68c P  0.28% WF   3.0 PSV       3 N       3  --  R13 S1 pass
+R14 : T  -3.66c W   3.84c S   1.59c ( +6.7 L  -2.6) LCB -126.65c P  0.28% WF   3.0 PSV       3 N       3  --  R14 A18 pass
+
+2025-11-27 20:59:58+0700: = Q12
+2025-11-27 21:00:05+0700: Controller: quit
+2025-11-27 21:00:05+0700: Quit requested by controller
+2025-11-27 21:00:05+0700: = 
+2025-11-27 21:00:05+0700: GPU -1 finishing, processed 18 rows 12 batches
+2025-11-27 21:00:05+0700: GPU -1 finishing, processed 17 rows 11 batches
+2025-11-27 21:00:05+0700: GPU -1 finishing, processed 17 rows 11 batches
+2025-11-27 21:00:05+0700: GPU -1 finishing, processed 18 rows 13 batches
+2025-11-27 21:00:05+0700: GPU -1 finishing, processed 18 rows 12 batches
+2025-11-27 21:00:05+0700: GPU -1 finishing, processed 19 rows 12 batches
+2025-11-27 21:00:05+0700: GPU -1 finishing, processed 18 rows 12 batches
+2025-11-27 21:00:05+0700: GPU -1 finishing, processed 17 rows 12 batches
+2025-11-27 21:00:05+0700: All cleaned up, quitting

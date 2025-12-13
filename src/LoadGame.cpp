@@ -6,7 +6,10 @@ Board LoadGame(std::string filename) {
     if (!in.is_open()) return Board();
 
     Board board;
+
+    in >> gridSize >> vsAI >> diff >> userStone >> Itime >> board.counterWhite.paused_time >> board.counterBlack.paused_time >> board.cntpass;
     in >> board.turn >> board.maxturn;
+    
     for (int i = 1; i <= board.maxturn; i++) {
         int sz;
         in >> sz;

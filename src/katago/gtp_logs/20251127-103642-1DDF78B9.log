@@ -1,0 +1,50 @@
+2025-11-27 10:36:42+0700: Running with following config:
+allowResignation = true
+lagBuffer = 0.0
+logAllGTPCommunication = true
+logDir = gtp_logs
+logSearchInfo = true
+logSearchInfoForChosenMove = false
+logToStderr = false
+maxPlayouts = 100
+maxPlayoutsPondering = 3000
+maxTime = 1.0
+maxTimePondering = 60.0
+maxVisits = 30
+maxVisitsPondering = 5000
+numSearchThreads = 6
+ponderingEnabled = false
+resignConsecTurns = 3
+resignThreshold = -0.90
+rules = tromp-taylor
+searchFactorAfterOnePass = 0.50
+searchFactorAfterTwoPass = 0.25
+searchFactorWhenWinning = 0.40
+searchFactorWhenWinningThreshold = 0.95
+
+2025-11-27 10:36:42+0700: Loading model and initializing benchmark...
+2025-11-27 10:36:42+0700: Testing with default positions for board size: 19
+2025-11-27 10:36:42+0700: nnRandSeed0 = 16984053897804681632
+2025-11-27 10:36:42+0700: After dedups: nnModelFile0 = model.gz useFP16 auto useNHWC auto
+2025-11-27 10:36:42+0700: Initializing neural net buffer to be size 19 * 19 exactly
+2025-11-27 10:36:46+0700: Eigen (CPU) backend thread 0: Model version 15
+2025-11-27 10:36:46+0700: Eigen (CPU) backend thread 1: Model version 15
+2025-11-27 10:36:46+0700: Eigen (CPU) backend thread 1: Model name: kata1-b28c512nbt-s11923456768-d5584765134
+2025-11-27 10:36:46+0700: Eigen (CPU) backend thread 0: Model name: kata1-b28c512nbt-s11923456768-d5584765134
+2025-11-27 10:37:07+0700: Loaded config default_gtp.cfg
+2025-11-27 10:37:07+0700: Loaded model model.gz
+2025-11-27 10:37:07+0700: GPU -1 finishing, processed 1 rows 1 batches
+2025-11-27 10:37:07+0700: GPU -1 finishing, processed 4 rows 4 batches
+2025-11-27 10:37:07+0700: nnRandSeed0 = 7439120416295184825
+2025-11-27 10:37:07+0700: After dedups: nnModelFile0 = model.gz useFP16 auto useNHWC auto
+2025-11-27 10:37:07+0700: Initializing neural net buffer to be size 19 * 19 exactly
+2025-11-27 10:37:19+0700: Eigen (CPU) backend thread 0: Model version 15
+2025-11-27 10:37:19+0700: Eigen (CPU) backend thread 0: Model name: kata1-b28c512nbt-s11923456768-d5584765134
+2025-11-27 10:37:19+0700: Eigen (CPU) backend thread 1: Model version 15
+2025-11-27 10:37:19+0700: Eigen (CPU) backend thread 1: Model name: kata1-b28c512nbt-s11923456768-d5584765134
+2025-11-27 11:22:56+0700: GPU -1 finishing, processed 137 rows 137 batches
+2025-11-27 11:22:56+0700: GPU -1 finishing, processed 140 rows 138 batches
+2025-11-27 11:22:56+0700: GPU -1 finishing, processed 140 rows 139 batches
+2025-11-27 11:22:56+0700: GPU -1 finishing, processed 137 rows 136 batches
+2025-11-27 11:22:56+0700: GPU -1 finishing, processed 139 rows 137 batches
+2025-11-27 11:22:56+0700: GPU -1 finishing, processed 137 rows 137 batches

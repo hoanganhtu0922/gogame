@@ -10,7 +10,7 @@ IMG::IMG() {
 
     img = LoadImage("../../assets/image/white.png");
     ImageFormat(&img, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);
-    remove_background(img);
+    RemoveBlack(img);
     White = LoadTextureFromImage(img);
     UnloadImage(img);
 
@@ -42,6 +42,12 @@ IMG::IMG() {
     ImageFormat(&img, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);
     RemoveBlack(img);
     GG = LoadTextureFromImage(img);
+    UnloadImage(img);
+
+    img = LoadImage("../../assets/image/reset.jpg");
+    ImageFormat(&img, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);
+    RemoveBlack(img);
+    Reset = LoadTextureFromImage(img);
     UnloadImage(img);
 }
 

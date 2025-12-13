@@ -28,6 +28,7 @@ int main() {
             Board gameBoard;
             if (choice == MenuChoice::Continue)
                 gameBoard = LoadGame("SaveGame.txt");
+            InitializeGameParameters(gridSize);
             gameBoard.LoopGame();   
             continue;
         } 

@@ -14,5 +14,5 @@ public:
 	IMG();
 	void remove_background(Image &to_remove);
 	void RemoveBlack(Image &to_remove);
-	Texture2D Black, White, UndoTex, SkipButton, RedoButton, ExitButton, GG;
+	Texture2D Black, White, UndoTex, SkipButton, RedoButton, ExitButton, GG, Reset;
 };

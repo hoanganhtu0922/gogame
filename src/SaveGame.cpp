@@ -4,8 +4,9 @@
 void SaveGame(const Board& board, std::string filename) {
     std::ofstream out(filename);
     if (!out.is_open()) return;
-
+    out << gridSize << " " << vsAI << " " << diff << " " << userStone << " " << Itime << " " << board.counterWhite.paused_time << " " << board.counterBlack.paused_time << " " << board.cntpass << "\n";
     out << board.turn << " " << board.maxturn << "\n";
+
     for (int i = 1; i <= board.maxturn; i++) {
         out << stage[i].size() << "\n";
         out << isSkip[i] << " " << StageTurn[i] << "\n";

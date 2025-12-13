@@ -6,6 +6,11 @@ int margin = 80;
 int screenSize = margin * 2 + (gridSize - 1) * cellSize;
 int SoundVol = 2;
 int MusicVol = 2;
+int vsAI = 0;
+int userStone = 0;
+int diff = 0;
+int Itime = 10;
+int typeboard = 0;
 Image img;
 Texture2D BackGround;
 

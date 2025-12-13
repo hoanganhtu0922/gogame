@@ -1,0 +1,41 @@
+2025-11-26 21:50:36+0700: Running with following config:
+allowResignation = true
+lagBuffer = 1.0
+logAllGTPCommunication = true
+logDir = gtp_logs
+logSearchInfo = true
+logSearchInfoForChosenMove = false
+logToStderr = false
+maxTime = 10.0
+maxTimePondering = 60.0
+maxVisits = 500
+numSearchThreads = 6
+ponderingEnabled = false
+resignConsecTurns = 3
+resignThreshold = -0.90
+rules = tromp-taylor
+searchFactorAfterOnePass = 0.50
+searchFactorAfterTwoPass = 0.25
+searchFactorWhenWinning = 0.40
+searchFactorWhenWinningThreshold = 0.95
+
+2025-11-26 21:50:36+0700: Loading model and initializing benchmark...
+2025-11-26 21:50:36+0700: Testing with default positions for board size: 19
+2025-11-26 21:50:36+0700: nnRandSeed0 = 15707991863477097138
+2025-11-26 21:50:36+0700: After dedups: nnModelFile0 = model.gz useFP16 auto useNHWC auto
+2025-11-26 21:50:36+0700: Initializing neural net buffer to be size 19 * 19 exactly
+2025-11-26 21:50:38+0700: Eigen (CPU) backend thread 0: Model version 15
+2025-11-26 21:50:38+0700: Eigen (CPU) backend thread 0: Model name: kata1-b28c512nbt-s11923456768-d5584765134
+2025-11-26 21:50:38+0700: Eigen (CPU) backend thread 1: Model version 15
+2025-11-26 21:50:38+0700: Eigen (CPU) backend thread 1: Model name: kata1-b28c512nbt-s11923456768-d5584765134
+2025-11-26 21:50:47+0700: Loaded config default_gtp.cfg
+2025-11-26 21:50:47+0700: Loaded model model.gz
+2025-11-26 21:50:47+0700: GPU -1 finishing, processed 1 rows 1 batches
+2025-11-26 21:50:47+0700: GPU -1 finishing, processed 4 rows 4 batches
+2025-11-26 21:50:47+0700: nnRandSeed0 = 5037283426452400340
+2025-11-26 21:50:47+0700: After dedups: nnModelFile0 = model.gz useFP16 auto useNHWC auto
+2025-11-26 21:50:47+0700: Initializing neural net buffer to be size 19 * 19 exactly
+2025-11-26 21:50:50+0700: Eigen (CPU) backend thread 1: Model version 15
+2025-11-26 21:50:50+0700: Eigen (CPU) backend thread 1: Model name: kata1-b28c512nbt-s11923456768-d5584765134
+2025-11-26 21:50:50+0700: Eigen (CPU) backend thread 0: Model version 15
+2025-11-26 21:50:50+0700: Eigen (CPU) backend thread 0: Model name: kata1-b28c512nbt-s11923456768-d5584765134

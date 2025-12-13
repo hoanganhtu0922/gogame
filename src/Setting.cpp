@@ -19,9 +19,13 @@ void Setting::Run() {
     float XMiddle = (float)(screenSize  - 519.0f * 0.35f) / 2;
     MenuButton Music(XMiddle, 200.f, 2, "MUSIC");
     MenuButton Sound(XMiddle, 300.f, 2, "SOUND");
-    MenuButton Back(XMiddle, 400.f, 0, "BACK");
+    MenuButton Type(XMiddle, 400.f, 1, "CLASSIC BOARD");
+    MenuButton Back(XMiddle, 500.f, 0, "BACK");
     Music.cnt = MusicVol;
     Sound.cnt = SoundVol;
+    Type.vers = {"CLASSIC", "CHINESE", "JAPANESE"};
+    Type.cyc = 3;
+    Type.cnt = typeboard;
 
     while (!WindowShouldClose()) {
         PlayMusicBackGround.Run();
@@ -44,6 +48,7 @@ void Setting::Run() {
         DrawCenteredText("SETTING", 56.0f, 120, BLACK);
         Music.DrawButton();
         Sound.DrawButton();
+        Type.DrawButton();
         Back.DrawButton();
         EndTextureMode();
         
@@ -64,4 +69,6 @@ void Setting::Run() {
 
     UnloadRenderTexture(target);
     MusicVol = Music.cnt;
+    SoundVol = Sound.cnt;
+    typeboard = Type.cnt;
 }

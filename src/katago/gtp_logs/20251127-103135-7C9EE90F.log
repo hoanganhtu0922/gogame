@@ -1,0 +1,29 @@
+2025-11-27 10:31:35+0700: Running with following config:
+allowResignation = true
+lagBuffer = 0.0
+logAllGTPCommunication = true
+logDir = gtp_logs
+logSearchInfo = true
+logSearchInfoForChosenMove = false
+logToStderr = false
+maxPlayouts = 100
+maxPlayoutsPondering = 3000
+maxTime = 1.0
+maxTimePondering = 60.0
+maxVisits = 30
+maxVisitsPondering = 5000
+numSearchThreads = 6
+ponderingEnabled = false
+resignConsecTurns = 3
+resignThreshold = -0.90
+rules = tromp-taylor
+searchFactorAfterOnePass = 0.50
+searchFactorAfterTwoPass = 0.25
+searchFactorWhenWinning = 0.40
+searchFactorWhenWinningThreshold = 0.95
+
+2025-11-27 10:31:35+0700: Loading model and initializing benchmark...
+2025-11-27 10:31:35+0700: Testing with default positions for board size: 19
+2025-11-27 10:31:35+0700: nnRandSeed0 = 9521412283406331689
+2025-11-27 10:31:35+0700: After dedups: nnModelFile0 = kata_model.bin.gz useFP16 auto useNHWC auto
+2025-11-27 10:31:35+0700: Initializing neural net buffer to be size 19 * 19 exactly

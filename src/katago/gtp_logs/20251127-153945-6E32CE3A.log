@@ -1,0 +1,261 @@
+2025-11-27 15:39:45+0700: Running with following config:
+allowResignation = true
+lagBuffer = 0.0
+logAllGTPCommunication = true
+logDir = gtp_logs
+logSearchInfo = true
+logSearchInfoForChosenMove = false
+logToStderr = false
+maxPlayouts = 100
+maxPlayoutsPondering = 3000
+maxTime = 0.1
+maxTimePondering = 60.0
+maxVisits = 30
+maxVisitsPondering = 5000
+numSearchThreads = 4
+ponderingEnabled = false
+resignConsecTurns = 3
+resignThreshold = -0.90
+rules = tromp-taylor
+searchFactorAfterOnePass = 0.50
+searchFactorAfterTwoPass = 0.25
+searchFactorWhenWinning = 0.40
+searchFactorWhenWinningThreshold = 0.95
+
+2025-11-27 15:39:45+0700: GTP Engine starting...
+2025-11-27 15:39:45+0700: KataGo v1.14.0
+2025-11-27 15:39:45+0700: Using TrompTaylor rules initially, unless GTP/GUI overrides this
+2025-11-27 15:39:45+0700: Using 4 CPU thread(s) for search
+2025-11-27 15:39:45+0700: nnRandSeed0 = 4989720738722975104
+2025-11-27 15:39:45+0700: After dedups: nnModelFile0 = model.gz useFP16 auto useNHWC auto
+2025-11-27 15:39:45+0700: Initializing neural net buffer to be size 19 * 19 exactly
+2025-11-27 15:39:45+0700: Eigen (CPU) backend thread 3: Model version 8
+2025-11-27 15:39:45+0700: Eigen (CPU) backend thread 3: Model name: b6c96-s1995008-d1329786
+2025-11-27 15:39:45+0700: Eigen (CPU) backend thread 1: Model version 8
+2025-11-27 15:39:45+0700: Eigen (CPU) backend thread 1: Model name: b6c96-s1995008-d1329786
+2025-11-27 15:39:45+0700: Eigen (CPU) backend thread 0: Model version 8
+2025-11-27 15:39:45+0700: Eigen (CPU) backend thread 2: Model version 8
+2025-11-27 15:39:45+0700: Eigen (CPU) backend thread 2: Model name: b6c96-s1995008-d1329786
+2025-11-27 15:39:45+0700: Eigen (CPU) backend thread 0: Model name: b6c96-s1995008-d1329786
+2025-11-27 15:39:45+0700: Loaded neural net with nnXLen 19 nnYLen 19
+2025-11-27 15:39:45+0700: Initializing board with boardXSize 19 boardYSize 19
+2025-11-27 15:39:45+0700: Loaded config default_gtp.cfg
+2025-11-27 15:39:45+0700: Loaded model model.gz
+2025-11-27 15:39:45+0700: Model name: b6c96-s1995008-d1329786
+2025-11-27 15:39:45+0700: GTP ready, beginning main protocol loop
+2025-11-27 15:39:52+0700: Controller: genmove b
+2025-11-27 15:39:52+0700: MoveNum: 0 HASH: CDCBC1F514D7E680FACD226074256633
+   A B C D E F G H J K L M N O P Q R S T
+19 . . . . . . . . . . . . . . . . . . .
+18 . . . . . . . . . . . . . . . . . . .
+17 . . . . . . . . . . . . . . . . . . .
+16 . . . . . . . . . . . . . . . . . . .
+15 . . . . . . . . . . . . . . . . . . .
+14 . . . . . . . . . . . . . . . . . . @
+13 . . . . . . . . . . . . . . . . . . .
+12 . . . . . . . . . . . . . . . . . . .
+11 . . . . . . . . . . . . . . . . . . .
+10 . . . . . . . . . . . . . . . . . . .
+ 9 . . . . . . . . . . . . . . . . . . .
+ 8 . . . . . . . . . . . . . . . . . . .
+ 7 . . . . . . . . . . . . . . . . . . .
+ 6 . . . . . . . . . . . . . . . . . . .
+ 5 . . . . . . . . . . . . . . . . . . .
+ 4 . . . . . . . . . . . . . . . . . . .
+ 3 . . . . . . . . . . . . . . . . . . .
+ 2 . . . . . . . . . . . . . . . . . . .
+ 1 . . . . . . . . . . . . . . . . . . .
+
+koPOSITIONALscoreAREAtaxNONEsui1komi7.5
+Time taken: 0.11
+Root visits: 11
+New playouts: 11
+NN rows: 11
+NN batches: 10
+NN avg batch size: 1.1
+PV: T17 S1 pass
+Tree:
+: T  -8.73c W  -1.58c S   0.52c ( +3.7 L  -3.4) N      11  --  T17 S1 pass
+---Black(^)---
+T17 : T  -6.69c W   1.13c S   1.08c ( +5.3 L  -2.9) LCB -129.73c P  0.28% WF   3.0 PSV       3 N       3  --  T17 S1 pass
+T14 : T  -6.69c W   1.31c S   1.17c ( +5.5 L  -2.9) LCB -131.52c P  0.28% WF   3.0 PSV       3 N       3  --  T14 T15 pass
+T15 : T  -7.49c W   0.79c S   1.05c ( +5.2 L  -3.1) LCB -133.47c P  0.28% WF   3.0 PSV       0 N       3  --  T15 T14 pass
+pss : T -46.22c W -39.44c S  -6.78c (-12.5 L  -5.5) LCB -396.22c P  0.30% WF   0.9 PSV       0 N       1  --  pass
+
+2025-11-27 15:39:52+0700: = T14
+2025-11-27 15:39:55+0700: Controller: genmove w
+2025-11-27 15:39:55+0700: MoveNum: 1 HASH: 10E53D1357B1C11DE5107EE9179360DB
+   A B C D E F G H J K L M N O P Q R S T
+19 . . . . . . . . . . . . . . . . . . .
+18 . . . . . . . . . . . . . . . . . . .
+17 . . . . . . . . . . . . . . . . . . .
+16 . . . . . . . . . . . . . . . . . . .
+15 . . . . . . . . . . . . . . . . . . @
+14 . . . . . . . . . . . . . . . . . . X1
+13 . . . . . . . . . . . . . . . . . . .
+12 . . . . . . . . . . . . . . . . . . .
+11 . . . . . . . . . . . . . . . . . . .
+10 . . . . . . . . . . . . . . . . . . .
+ 9 . . . . . . . . . . . . . . . . . . .
+ 8 . . . . . . . . . . . . . . . . . . .
+ 7 . . . . . . . . . . . . . . . . . . .
+ 6 . . . . . . . . . . . . . . . . . . .
+ 5 . . . . . . . . . . . . . . . . . . .
+ 4 . . . . . . . . . . . . . . . . . . .
+ 3 . . . . . . . . . . . . . . . . . . .
+ 2 . . . . . . . . . . . . . . . . . . .
+ 1 . . . . . . . . . . . . . . . . . . .
+
+koPOSITIONALscoreAREAtaxNONEsui1komi7.5
+Time taken: 0.125
+Root visits: 21
+New playouts: 18
+NN rows: 19
+NN batches: 17
+NN avg batch size: 1.11765
+PV: T15 S16
+Tree:
+: T  11.55c W   9.27c S   1.02c ( -0.7 L  +3.6) N      21  --  T15 S16
+---White(^)---
+T15 : T  13.07c W  10.91c S   1.33c ( +0.1 L  +3.7) LCB    0.10c P  0.31% WF  13.9 PSV      14 N      14  --  T15 S16
+S14 : T  16.67c W  12.62c S   1.82c ( +1.4 L  +4.1) LCB  -17.88c P  0.31% WF   6.1 PSV       6 N       6  --  S14 S15
+
+2025-11-27 15:39:55+0700: = T15
+2025-11-27 15:39:57+0700: Controller: genmove w
+2025-11-27 15:39:57+0700: MoveNum: 0 HASH: B6D2E80DF098556505EDC8525DA39997
+   A B C D E F G H J K L M N O P Q R S T
+19 . . . . . . . . . . . . . . . . . . .
+18 . . . . . . . . . . . . . . . . . . .
+17 . . . . . . . . . . . . . . . . . . .
+16 . . . . . . . . . . . . . . . . . . .
+15 . . . . . . . . . . . . . . . . . . O
+14 . . . . . . . . . . . . . . . . . . X
+13 . . . . . . . . . . . . . . . . . . .
+12 . . . . . . . . . . . . . . . . . . .
+11 . . . . . . . . . . . . . . . . . . .
+10 . . . . . . . . . . . . . . . . . . .
+ 9 . . . . . . . . . . . . . . . . . . .
+ 8 . . . . . . . . . . . . . . . . . . .
+ 7 . . . . . . . . . . . . . . . . . . .
+ 6 . . . . . . . . . . . . . . . . . . .
+ 5 . . . . . . . . . . . . . . . . . . .
+ 4 . . . . . . . . . . . . . . . . . . .
+ 3 . . . . . . . . . . . . . . . . . . .
+ 2 . . . . . . . . . . . . . . . . . . .
+ 1 . . . . . . . . . . . . . . . . . . .
+
+koPOSITIONALscoreAREAtaxNONEsui1komi7.5
+Time taken: 0.109
+Root visits: 15
+New playouts: 15
+NN rows: 15
+NN batches: 14
+NN avg batch size: 1.07143
+PV: S13
+Tree:
+: T -10.23c W  -8.83c S  -1.40c ( -3.6 L  +4.8) N      15  --  S13
+---White(^)---
+S13 : T  -9.87c W  -8.84c S  -1.02c ( -2.6 L  +4.8) LCB -359.87c P  0.32% WF   1.0 PSV       1 N       1  --  S13
+pss : T -10.73c W  -9.23c S  -1.50c ( -3.9 L  +5.0) LCB -360.73c P  0.37% WF   1.0 PSV       1 N       1  --  pass
+R14 : T -10.51c W  -9.36c S  -1.15c ( -2.9 L  +4.9) LCB -360.51c P  0.30% WF   1.0 PSV       1 N       1  --  R14
+A18 : T -10.67c W  -9.41c S  -1.25c ( -3.2 L  +4.9) LCB -360.67c P  0.30% WF   1.0 PSV       1 N       1  --  A18
+S14 : T -12.43c W -10.84c S  -1.59c ( -4.1 L  +4.8) LCB -362.43c P  0.32% WF   1.0 PSV       0 N       1  --  S14
+T16 : T -11.16c W  -9.87c S  -1.29c ( -3.3 L  +4.7) LCB -361.16c P  0.32% WF   1.0 PSV       0 N       1  --  T16
+T17 : T -13.36c W -11.52c S  -1.84c ( -4.8 L  +4.9) LCB -363.36c P  0.31% WF   1.0 PSV       0 N       1  --  T17
+T12 : T -11.99c W -10.45c S  -1.54c ( -4.0 L  +5.0) LCB -361.99c P  0.31% WF   1.0 PSV       0 N       1  --  T12
+A19 : T -12.95c W -11.09c S  -1.86c ( -4.8 L  +5.0) LCB -362.95c P  0.31% WF   1.0 PSV       0 N       1  --  A19
+B19 : T -11.10c W  -9.76c S  -1.34c ( -3.5 L  +4.9) LCB -361.10c P  0.30% WF   1.0 PSV       0 N       1  --  B19
+
+2025-11-27 15:39:57+0700: = pass
+2025-11-27 15:40:00+0700: Controller: genmove w
+2025-11-27 15:40:00+0700: MoveNum: 0 HASH: B6D2E80DF098556505EDC8525DA39997
+   A B C D E F G H J K L M N O P Q R S T
+19 . . . . . . . @ . . . . . . . . . . .
+18 . . . . . . . . . . . . . . . . . . .
+17 . . . . . . . . . . . . . . . . . . .
+16 . . . . . . . . . . . . . . . . . . .
+15 . . . . . . . . . . . . . . . . . . O
+14 . . . . . . . . . . . . . . . . . . X
+13 . . . . . . . . . . . . . . . . . . .
+12 . . . . . . . . . . . . . . . . . . .
+11 . . . . . . . . . . . . . . . . . . .
+10 . . . . . . . . . . . . . . . . . . .
+ 9 . . . . . . . . . . . . . . . . . . .
+ 8 . . . . . . . . . . . . . . . . . . .
+ 7 . . . . . . . . . . . . . . . . . . .
+ 6 . . . . . . . . . . . . . . . . . . .
+ 5 . . . . . . . . . . . . . . . . . . .
+ 4 . . . . . . . . . . . . . . . . . . .
+ 3 . . . . . . . . . . . . . . . . . . .
+ 2 . . . . . . . . . . . . . . . . . . .
+ 1 . . . . . . . . . . . . . . . . . . .
+
+koPOSITIONALscoreAREAtaxNONEsui1komi7.5
+Time taken: 0.125
+Root visits: 29
+New playouts: 29
+NN rows: 14
+NN batches: 12
+NN avg batch size: 1.16667
+PV: R12
+Tree:
+: T -10.70c W  -9.29c S  -1.40c ( -3.6 L  +4.8) N      29  --  R12
+---White(^)---
+R12 : T  -9.60c W  -8.54c S  -1.05c ( -2.7 L  +4.8) LCB -359.60c P  0.30% WF   1.0 PSV       1 N       1  --  R12
+pss : T -10.73c W  -9.23c S  -1.50c ( -3.9 L  +5.0) LCB -360.73c P  0.37% WF   1.0 PSV       1 N       1  --  pass
+S13 : T  -9.87c W  -8.84c S  -1.02c ( -2.6 L  +4.8) LCB -359.87c P  0.32% WF   1.0 PSV       1 N       1  --  S13
+R14 : T -10.51c W  -9.36c S  -1.15c ( -2.9 L  +4.9) LCB -360.51c P  0.30% WF   1.0 PSV       1 N       1  --  R14
+A18 : T -10.67c W  -9.41c S  -1.25c ( -3.2 L  +4.9) LCB -360.67c P  0.30% WF   1.0 PSV       1 N       1  --  A18
+P19 : T -10.75c W  -9.49c S  -1.26c ( -3.3 L  +4.8) LCB -360.75c P  0.30% WF   1.0 PSV       1 N       1  --  P19
+J19 : T -10.65c W  -9.31c S  -1.33c ( -3.5 L  +5.0) LCB -360.65c P  0.30% WF   1.0 PSV       1 N       1  --  J19
+K19 : T -10.65c W  -9.31c S  -1.33c ( -3.5 L  +5.0) LCB -360.65c P  0.30% WF   1.0 PSV       1 N       1  --  K19
+H19 : T -10.12c W  -9.00c S  -1.12c ( -2.9 L  +4.9) LCB -360.12c P  0.30% WF   1.0 PSV       1 N       1  --  H19
+F19 : T -10.66c W  -9.43c S  -1.23c ( -3.2 L  +4.9) LCB -360.66c P  0.29% WF   1.0 PSV       1 N       1  --  F19
+
+2025-11-27 15:40:00+0700: = H19
+2025-11-27 15:40:03+0700: Controller: genmove b
+2025-11-27 15:40:03+0700: MoveNum: 1 HASH: 54DCD0335D09F505C59DCFA37F6F91E0
+   A B C D E F G H J K L M N O P Q R S T
+19 . . . . . . . O1. . . . . . . . . . .
+18 . . . . . . . . . . . . . . . . . . .
+17 . . . . . . . . . . . . . . . . . . .
+16 @ . . . . . . . . . . . . . . . . . .
+15 . . . . . . . . . . . . . . . . . . O
+14 . . . . . . . . . . . . . . . . . . X
+13 . . . . . . . . . . . . . . . . . . .
+12 . . . . . . . . . . . . . . . . . . .
+11 . . . . . . . . . . . . . . . . . . .
+10 . . . . . . . . . . . . . . . . . . .
+ 9 . . . . . . . . . . . . . . . . . . .
+ 8 . . . . . . . . . . . . . . . . . . .
+ 7 . . . . . . . . . . . . . . . . . . .
+ 6 . . . . . . . . . . . . . . . . . . .
+ 5 . . . . . . . . . . . . . . . . . . .
+ 4 . . . . . . . . . . . . . . . . . . .
+ 3 . . . . . . . . . . . . . . . . . . .
+ 2 . . . . . . . . . . . . . . . . . . .
+ 1 . . . . . . . . . . . . . . . . . . .
+
+koPOSITIONALscoreAREAtaxNONEsui1komi7.5
+Time taken: 0.109
+Root visits: 16
+New playouts: 15
+NN rows: 16
+NN batches: 16
+NN avg batch size: 1
+PV: R13
+Tree:
+: T -11.83c W -11.02c S  -0.74c ( -0.2 L  -3.7) N      16  --  R13
+---Black(^)---
+R13 : T  -9.44c W  -9.21c S  -0.23c ( +1.2 L  -3.8) LCB -359.45c P  0.31% WF   1.0 PSV       1 N       1  --  R13
+pss : T -46.95c W -40.32c S  -6.63c (-12.8 L  -5.5) LCB -396.95c P  0.36% WF   0.9 PSV       1 N       1  --  pass
+T17 : T -11.43c W -10.87c S  -0.56c ( +0.3 L  -3.3) LCB -361.43c P  0.31% WF   1.0 PSV       1 N       1  --  T17
+S15 : T -10.04c W  -9.80c S  -0.25c ( +1.1 L  -3.8) LCB -360.04c P  0.31% WF   1.0 PSV       1 N       1  --  S15
+A19 : T -12.64c W -11.90c S  -0.74c ( -0.2 L  -3.4) LCB -362.64c P  0.30% WF   1.0 PSV       1 N       1  --  A19
+J19 : T -11.73c W -11.10c S  -0.63c ( +0.1 L  -3.3) LCB -361.73c P  0.30% WF   1.0 PSV       1 N       1  --  J19
+T16 : T  -9.62c W  -9.44c S  -0.17c ( +1.3 L  -3.6) LCB -359.62c P  0.30% WF   1.0 PSV       1 N       1  --  T16
+G19 : T -11.15c W -10.50c S  -0.65c ( -0.0 L  -3.5) LCB -361.15c P  0.30% WF   1.0 PSV       1 N       1  --  G19
+B19 : T -11.80c W -11.05c S  -0.74c ( -0.2 L  -3.6) LCB -361.80c P  0.30% WF   1.0 PSV       1 N       1  --  B19
+B1  : T -12.55c W -11.66c S  -0.89c ( -0.6 L  -3.4) LCB -362.55c P  0.30% WF   1.0 PSV       1 N       1  --  B1
+
+2025-11-27 15:40:03+0700: = A16

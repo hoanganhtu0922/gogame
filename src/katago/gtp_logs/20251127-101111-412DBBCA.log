@@ -1,0 +1,93 @@
+2025-11-27 10:11:11+0700: Running with following config:
+allowResignation = true
+lagBuffer = 0.0
+logAllGTPCommunication = true
+logDir = gtp_logs
+logSearchInfo = true
+logSearchInfoForChosenMove = false
+logToStderr = false
+maxPlayouts = 300
+maxPlayoutsPondering = 3000
+maxTime = 1.0
+maxTimePondering = 60.0
+maxVisits = 500
+maxVisitsPondering = 5000
+numSearchThreads = 6
+ponderingEnabled = false
+resignConsecTurns = 3
+resignThreshold = -0.90
+rules = tromp-taylor
+searchFactorAfterOnePass = 0.50
+searchFactorAfterTwoPass = 0.25
+searchFactorWhenWinning = 0.40
+searchFactorWhenWinningThreshold = 0.95
+
+2025-11-27 10:11:11+0700: GTP Engine starting...
+2025-11-27 10:11:11+0700: KataGo v1.14.0
+2025-11-27 10:11:11+0700: Using TrompTaylor rules initially, unless GTP/GUI overrides this
+2025-11-27 10:11:11+0700: Using 6 CPU thread(s) for search
+2025-11-27 10:11:11+0700: nnRandSeed0 = 15961381347128428945
+2025-11-27 10:11:11+0700: After dedups: nnModelFile0 = model.gz useFP16 auto useNHWC auto
+2025-11-27 10:11:11+0700: Initializing neural net buffer to be size 19 * 19 exactly
+2025-11-27 10:11:15+0700: Eigen (CPU) backend thread 1: Model version 15
+2025-11-27 10:11:15+0700: Eigen (CPU) backend thread 1: Model name: kata1-b28c512nbt-s11923456768-d5584765134
+2025-11-27 10:11:15+0700: Eigen (CPU) backend thread 2: Model version 15
+2025-11-27 10:11:15+0700: Eigen (CPU) backend thread 2: Model name: kata1-b28c512nbt-s11923456768-d5584765134
+2025-11-27 10:11:15+0700: Eigen (CPU) backend thread 3: Model version 15
+2025-11-27 10:11:15+0700: Eigen (CPU) backend thread 3: Model name: kata1-b28c512nbt-s11923456768-d5584765134
+2025-11-27 10:11:15+0700: Eigen (CPU) backend thread 4: Model version 15
+2025-11-27 10:11:15+0700: Eigen (CPU) backend thread 4: Model name: kata1-b28c512nbt-s11923456768-d5584765134
+2025-11-27 10:11:15+0700: Eigen (CPU) backend thread 5: Model version 15
+2025-11-27 10:11:15+0700: Eigen (CPU) backend thread 5: Model name: kata1-b28c512nbt-s11923456768-d5584765134
+2025-11-27 10:11:15+0700: Eigen (CPU) backend thread 0: Model version 15
+2025-11-27 10:11:15+0700: Eigen (CPU) backend thread 0: Model name: kata1-b28c512nbt-s11923456768-d5584765134
+2025-11-27 10:11:18+0700: Loaded neural net with nnXLen 19 nnYLen 19
+2025-11-27 10:11:18+0700: Initializing board with boardXSize 19 boardYSize 19
+2025-11-27 10:11:18+0700: Loaded config default_gtp.cfg
+2025-11-27 10:11:18+0700: Loaded model model.gz
+2025-11-27 10:11:18+0700: Model name: kata1-b28c512nbt-s11923456768-d5584765134
+2025-11-27 10:11:18+0700: GTP ready, beginning main protocol loop
+2025-11-27 10:12:05+0700: Controller: play B C1
+2025-11-27 10:12:05+0700: = 
+2025-11-27 10:12:08+0700: Controller: genmove W
+2025-11-27 10:12:13+0700: MoveNum: 1 HASH: E1BA23D8CEDAA527BF6B0E8439F79E08
+   A B C D E F G H J K L M N O P Q R S T
+19 . . . . . . . . . . . . . . . . . . .
+18 . . . . . . . . . . . . . . . . . . .
+17 . . . . . . . . . . . . . . . . . . .
+16 . . . . . . . . . . . . . . . . . . .
+15 . . . . . . . . . . . . . . . . . . .
+14 . . . . . . . . . . . . . . . . . . .
+13 . . . . . . . . . . . . . . . . . . .
+12 . . . . . . . . . . . . . . . . . . .
+11 . . . . . . . . . . . . . . . . . . .
+10 . . . . . . . . . . . . . . . . . . .
+ 9 . . . . . . . . . . . . . . . . . . .
+ 8 . . . . . . . . . . . . . . . . . . .
+ 7 . . . . . . . . . . . . . . . . . . .
+ 6 . . . . . . . . . . . . . . . . . . .
+ 5 . . . . . . . . . . . . . . . . . . .
+ 4 . . @ . . . . . . . . . . . . . . . .
+ 3 . . . . . . . . . . . . . . . . . . .
+ 2 . . . . . . . . . . . . . . . . . . .
+ 1 . . X1. . . . . . . . . . . . . . . .
+
+koPOSITIONALscoreAREAtaxNONEsui1komi7.5
+Time taken: 4.547
+Root visits: 7
+New playouts: 7
+NN rows: 7
+NN batches: 7
+NN avg batch size: 1
+PV: C4
+Tree:
+: T 100.32c W  96.17c S   4.14c (+12.3 L +10.0) N       7  --  C4
+---White(^)---
+C4  : T 100.90c W  96.52c S   4.38c (+12.5 L +10.6) LCB -249.10c P 14.99% WF   3.6 PSV       4 N       1  --  C4
+C3  : T 100.58c W  96.32c S   4.26c (+12.4 L +10.4) LCB -249.42c P 16.93% WF   3.5 PSV       3 N       1  --  C3
+Q4  : T 100.39c W  96.28c S   4.11c (+12.2 L  +9.7) LCB -249.61c P  4.99% WF   4.3 PSV       1 N       1  --  Q4
+D16 : T 100.47c W  96.34c S   4.13c (+12.2 L  +9.8) LCB -249.53c P  4.58% WF   4.3 PSV       1 N       1  --  D16
+D4  : T 100.53c W  96.28c S   4.25c (+12.4 L +10.1) LCB -249.47c P  3.43% WF   4.1 PSV       0 N       1  --  D4
+D3  : T 100.41c W  96.25c S   4.16c (+12.3 L +10.2) LCB -249.59c P  2.87% WF   3.6 PSV       0 N       1  --  D3
+
+2025-11-27 10:12:13+0700: = C4

@@ -1,0 +1,52 @@
+2025-11-26 21:43:57+0700: Running with following config:
+allowResignation = true
+lagBuffer = 1.0
+logAllGTPCommunication = true
+logDir = gtp_logs
+logSearchInfo = true
+logSearchInfoForChosenMove = false
+logToStderr = false
+maxTimePondering = 60.0
+maxVisits = 500
+numSearchThreads = 6
+ponderingEnabled = false
+resignConsecTurns = 3
+resignThreshold = -0.90
+rules = tromp-taylor
+searchFactorAfterOnePass = 0.50
+searchFactorAfterTwoPass = 0.25
+searchFactorWhenWinning = 0.40
+searchFactorWhenWinningThreshold = 0.95
+
+2025-11-26 21:43:57+0700: GTP Engine starting...
+2025-11-26 21:43:57+0700: KataGo v1.14.0
+2025-11-26 21:43:57+0700: Using TrompTaylor rules initially, unless GTP/GUI overrides this
+2025-11-26 21:43:57+0700: Using 6 CPU thread(s) for search
+2025-11-26 21:43:57+0700: nnRandSeed0 = 10715196066096095515
+2025-11-26 21:43:57+0700: After dedups: nnModelFile0 = model.gz useFP16 auto useNHWC auto
+2025-11-26 21:43:57+0700: Initializing neural net buffer to be size 19 * 19 exactly
+2025-11-26 21:44:00+0700: Eigen (CPU) backend thread 0: Model version 15
+2025-11-26 21:44:00+0700: Eigen (CPU) backend thread 0: Model name: kata1-b28c512nbt-s11923456768-d5584765134
+2025-11-26 21:44:00+0700: Eigen (CPU) backend thread 5: Model version 15
+2025-11-26 21:44:00+0700: Eigen (CPU) backend thread 5: Model name: kata1-b28c512nbt-s11923456768-d5584765134
+2025-11-26 21:44:00+0700: Eigen (CPU) backend thread 1: Model version 15
+2025-11-26 21:44:00+0700: Eigen (CPU) backend thread 1: Model name: kata1-b28c512nbt-s11923456768-d5584765134
+2025-11-26 21:44:00+0700: Eigen (CPU) backend thread 4: Model version 15
+2025-11-26 21:44:00+0700: Eigen (CPU) backend thread 4: Model name: kata1-b28c512nbt-s11923456768-d5584765134
+2025-11-26 21:44:00+0700: Eigen (CPU) backend thread 2: Model version 15
+2025-11-26 21:44:00+0700: Eigen (CPU) backend thread 2: Model name: kata1-b28c512nbt-s11923456768-d5584765134
+2025-11-26 21:44:00+0700: Eigen (CPU) backend thread 3: Model version 15
+2025-11-26 21:44:00+0700: Eigen (CPU) backend thread 3: Model name: kata1-b28c512nbt-s11923456768-d5584765134
+2025-11-26 21:44:02+0700: Loaded neural net with nnXLen 19 nnYLen 19
+2025-11-26 21:44:02+0700: Initializing board with boardXSize 19 boardYSize 19
+2025-11-26 21:44:02+0700: Loaded config default_gtp.cfg
+2025-11-26 21:44:02+0700: Loaded model model.gz
+2025-11-26 21:44:02+0700: Model name: kata1-b28c512nbt-s11923456768-d5584765134
+2025-11-26 21:44:02+0700: GTP ready, beginning main protocol loop
+2025-11-26 21:44:57+0700: Controller: boardsize 19
+2025-11-26 21:44:57+0700: = 
+2025-11-26 21:45:09+0700: Controller: komi 5.5
+2025-11-26 21:45:09+0700: = 
+2025-11-26 21:45:16+0700: Controller: play B C3
+2025-11-26 21:45:16+0700: = 
+2025-11-26 21:45:28+0700: Controller: genmove W
