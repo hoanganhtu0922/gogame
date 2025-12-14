@@ -549,6 +549,7 @@ std::pair <int, int> Board::randomMove() {
 std::pair <int, int> Board::mediumMove() {
     std::vector <std::vector <int>> color(19, std::vector<int>(19, -1));
     std::vector <std::pair <int, int>> lst;
+    std::vector <std::vector <int>> good(19, std::vector<int>(19, 0));
 
     for (auto b : points) {
         color[b.x][b.y] = b.black; 
@@ -561,41 +562,44 @@ std::pair <int, int> Board::mediumMove() {
             }
 
             int sz = ListOfCapturedStone(i, j, 1 ^ black).size();
-            for (int n = 0; n < sz * 20; n++) {
-                lst.push_back({i, j});
-            }
+            good[i][j] += sz * 20;
 
             if (ValidMove(i, j, black)) {
                 sz = ListOfCapturedStone(i, j, black).size();
-                for (int n = 0; n < sz * 20; n++) {
-                    lst.push_back({i, j});
-                }
+                good[i][j] += sz * 20;
             }
 
             for (int f = 0; f < 4; f++) {
                 int x = i + X[f], y = j + Y[f];
                 if (x >= 0 && x < gridSize && y >= 0 && y < gridSize) {
                     if (color[x][y] == (1 ^ black)) {
-                        for (int n = 0; n < 4; n++) {
-                            lst.push_back({i, j});
-                        }
+                        good[i][j] += 3;
                     }
 
                     if (color[x][y] == black) {
-                        lst.push_back({i, j});
+                        good[i][j] += 1;
                     }
                 }
             }
         }
     }
 
-    if (lst.empty()) {
-        return randomMove();
+    int mx = 0, x = 0, y = 0;
+    for (int i = 0; i < gridSize; i++) {
+        for (int j = 0; j < gridSize; j++) {
+            if (good[i][j] > mx) {
+                mx = good[i][j];
+                x = i;
+                y = j;
+            }
+        }
     }
 
-    lst.push_back({-2, -2});
-    int sz = (int)lst.size();
-    return lst[rand() % sz];
+    if (ValidMove(x, y, 1 ^ black)) {
+        return {x, y};
+    } else {
+        return randomMove();
+    }
 }
 
 
@@ -653,6 +657,11 @@ void Board::LoopGame() {
         else if (Type == "Exit") HoverExit = 1;
         else if (Type == "GG") HoverGG = 1; 
         else if (Type == "Reset") HoverReset = 1;
+
+        if (timeWhite <= counterWhite.elapsedSeconds() || timeBlack <= counterBlack.elapsedSeconds()) {
+            matchEnd = 1;
+            PressGGButton();
+        }
 
         if (vsAI && matchEnd == 0 && black != userStone) {
             std::pair <int, int> move;
