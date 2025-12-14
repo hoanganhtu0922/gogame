@@ -659,7 +659,6 @@ void Board::LoopGame() {
         else if (Type == "Reset") HoverReset = 1;
 
         if (timeWhite <= counterWhite.elapsedSeconds() || timeBlack <= counterBlack.elapsedSeconds()) {
-            matchEnd = 1;
             PressGGButton();
         }
 
