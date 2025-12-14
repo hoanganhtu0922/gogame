@@ -560,12 +560,25 @@ std::pair <int, int> Board::mediumMove() {
                 continue;
             }
 
+            int sz = ListOfCapturedStone(i, j, 1 ^ black).size();
+            for (int n = 0; n < sz * 20; n++) {
+                lst.push_back({i, j});
+            }
+
+            if (ValidMove(i, j, black)) {
+                sz = ListOfCapturedStone(i, j, black).size();
+                for (int n = 0; n < sz * 20; n++) {
+                    lst.push_back({i, j});
+                }
+            }
+
             for (int f = 0; f < 4; f++) {
                 int x = i + X[f], y = j + Y[f];
                 if (x >= 0 && x < gridSize && y >= 0 && y < gridSize) {
                     if (color[x][y] == (1 ^ black)) {
-                        lst.push_back({i, j});
-                        lst.push_back({i, j});
+                        for (int n = 0; n < 4; n++) {
+                            lst.push_back({i, j});
+                        }
                     }
 
                     if (color[x][y] == black) {
